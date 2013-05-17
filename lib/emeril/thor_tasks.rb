@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 require 'thor'
 require 'chef/knife'
 
@@ -8,6 +10,7 @@ module Emeril
   # Emeril Rake task generator.
   #
   # @author Fletcher Nichol <fnichol@nichol.ca>
+  #
   class ThorTasks < Thor
 
     namespace :emeril
@@ -15,6 +18,7 @@ module Emeril
     # Creates Emeril Thor tasks and allows the callee to configure it.
     #
     # @yield [self] gives itself to the block
+    #
     def initialize(*args)
       super
       @logger = Chef::Log

@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 require 'chef/cookbook_loader'
 require 'chef/cookbook_uploader'
 require 'chef/cookbook_site_streaming_uploader'
@@ -10,10 +12,24 @@ require 'emeril/logging'
 
 module Emeril
 
+  # Takes a path to a cookbook and pushes it up to the Community Site.
+  #
+  # @author Fletcher Nichol <fnichol@nichol.ca>
+  #
   class Publisher
 
     include Logging
 
+    # Creates a new instance.
+    #
+    # @param [Hash] options configuration for a publisher
+    # @option options [Logger] an optional logger instance
+    # @option options [String] source_path the path to a git repository
+    # @option options [String] name (required) the name of the cookbook
+    # @option options [String] category a Community Site category for the
+    #   cookbook
+    # @raise [ArgumentError] if any required options are not set
+    #
     def initialize(options = {})
       @logger = options[:logger]
       @source_path = options.fetch(:source_path, Dir.pwd)
@@ -22,6 +38,9 @@ module Emeril
       validate_chef_config!
     end
 
+    # Prepares a sandbox copy of the cookbook and uploads it to the Community
+    # Site.
+    #
     def run
       sandbox_path = sandbox_cookbook
       share = SharePlugin.new
@@ -65,6 +84,8 @@ module Emeril
       LoggingUI.new(ui.stdout, ui.stderr, ui.stdin, ui.config, logger)
     end
 
+    # A custom knife UI that sends logging methods to a logger, if it exists.
+    #
     class LoggingUI < :: Chef::Knife::UI
 
       def initialize(stdout, stderr, stdin, config, logger)
@@ -93,6 +114,9 @@ module Emeril
       attr_reader :logger
     end
 
+    # A custom cookbook site share knife plugin that intercepts Kernel#exit
+    # calls and converts them to an exception raise.
+    #
     class SharePlugin < ::Chef::Knife::CookbookSiteShare
 
       def exit(code)

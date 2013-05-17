@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 require 'rake/tasklib'
 require 'chef/knife'
 
@@ -8,11 +10,13 @@ module Emeril
   # Emeril Rake task generator.
   #
   # @author Fletcher Nichol <fnichol@nichol.ca>
+  #
   class RakeTasks < ::Rake::TaskLib
 
     # Creates Emeril Rake tasks and allows the callee to configure it.
     #
     # @yield [self] gives itself to the block
+    #
     def initialize
       @logger = Chef::Log
       yield self if block_given?

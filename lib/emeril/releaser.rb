@@ -1,7 +1,26 @@
+# -*- encoding: utf-8 -*-
+
 module Emeril
 
+  # Tags a git commit with a version string and pushes the cookbook to the
+  # Community Site.
+  #
+  # @author Fletcher Nichol <fnichol@nichol.ca>
+  #
   class Releaser
 
+    # Creates a new instance.
+    #
+    # @param [Hash] options configuration for a releaser
+    # @option options [Logger] an optional logger instance
+    # @option options [String] source_path the path to a git repository
+    # @option options [Hash] metadata a hash of cookbook metadata
+    # @option options [String] category a Community Site category for the
+    #   cookbook
+    # @option options [GitTagger] git_tagger a git tagger
+    # @option options [Publisher] publisher a publisher
+    # @raise [ArgumentError] if any required options are not set
+    #
     def initialize(options = {})
       @logger = options[:logger]
       @source_path = options.fetch(:source_path, Dir.pwd)
@@ -11,6 +30,8 @@ module Emeril
       @publisher = options.fetch(:publisher) { default_publisher }
     end
 
+    # Tags and releases a cookbook.
+    #
     def run
       git_tagger.run
       publisher.run

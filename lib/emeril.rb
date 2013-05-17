@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 require 'emeril/category'
 require 'emeril/git_tagger'
 require 'emeril/metadata_chopper'

@@ -1,11 +1,27 @@
+# -*- encoding: utf-8 -*-
+
 require 'emeril/logging'
 
 module Emeril
 
+  # Applies a version tag on a git repository and pushes it to the origin
+  # remote.
+  #
+  # @author Fletcher Nichol <fnichol@nichol.ca>
+  #
   class GitTagger
 
     include Logging
 
+    # Creates a new instance.
+    #
+    # @param [Hash] options configuration for a git tagger
+    # @option options [Logger] an optional logger instance
+    # @option options [String] source_path the path to a git repository
+    # @option options [String] tag_prefix a prefix for a git tag version string
+    # @option options [String] version (required) a version string
+    # @raise [ArgumentError] if any required options are not set
+    #
     def initialize(options = {})
       @logger = options[:logger]
       @source_path = options.fetch(:source_path, Dir.pwd)
@@ -15,6 +31,9 @@ module Emeril
       end
     end
 
+    # Applies a version tag on a git repository and pushes it to the origin
+    # remote.
+    #
     def run
       guard_clean
       tag_version { git_push } unless already_tagged?

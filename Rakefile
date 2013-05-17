@@ -14,7 +14,7 @@ task :stats do
   puts "\n## Production Code Stats"
   sh "countloc -r lib"
   puts "\n## Test Code Stats"
-  sh "countloc -r spec features"
+  sh "countloc -r spec"
 end
 
 desc "Run all quality tasks"
