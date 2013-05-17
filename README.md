@@ -1,5 +1,9 @@
 # Emeril
 
+[![Build Status](https://travis-ci.org/fnichol/emeril.png?branch=master)](https://travis-ci.org/fnichol/emeril)
+[![Dependency Status](https://gemnasium.com/fnichol/emeril.png)](https://gemnasium.com/fnichol/emeril)
+[![Code Climate](https://codeclimate.com/github/fnichol/emeril.png)](https://codeclimate.com/github/fnichol/emeril)
+
 Kick it up a notch!
 
 ## Installation
