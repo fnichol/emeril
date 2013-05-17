@@ -47,7 +47,7 @@ module Emeril
     end
 
     def default_category
-      Category.for(metadata[:name]) || "Other"
+      Category.for_cookbook(metadata[:name]) || "Other"
     end
   end
 end

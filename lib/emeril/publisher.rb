@@ -53,12 +53,12 @@ module Emeril
     end
 
     def cookbook_files
-      ruby_dirs = %w{
+      entries = %w{
+        README.* CHANGELOG.* metadata.{json,rb}
         attributes files libraries providers recipes resources templates
-      }.join(",")
-      docs = %w{README.* CHANGELOG.*}.join(",")
+      }
 
-      Dir.glob("#{source_path}/{metadata.{json,rb},#{docs},#{ruby_dirs}}")
+      Dir.glob("#{source_path}/{#{entries.join(',')}}")
     end
 
     def logging_ui(ui)

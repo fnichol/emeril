@@ -28,10 +28,10 @@ module Emeril
 
     def define
       metadata = Emeril::MetadataChopper.new("metadata.rb")
+      artifact = "#{metadata[:name]}-#{metadata[:version]}"
 
       self.class.desc "release",
-        "Create git tag for #{metadata[:name]}-#{metadata[:version]}" +
-        " and push to the Community Site"
+        "Create git tag for #{artifact} and push to the Community Site"
       self.class.send(:define_method, :all) do
         Chef::Knife.new.configure_chef
         Emeril::Releaser.new(:logger => logger).run
