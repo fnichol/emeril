@@ -4,6 +4,14 @@ require 'emeril/logging'
 
 module Emeril
 
+  # Exception class raised when a git repo is not clean.
+  #
+  class GitNotCleanError < StandardError ; end
+
+  # Exception class raised when a git push does not return successfully.
+  #
+  class GitPushError < StandardError ; end
+
   # Applies a version tag on a git repository and pushes it to the origin
   # remote.
   #
@@ -53,7 +61,7 @@ module Emeril
     end
 
     def clean?
-      sh_with_code("git diff --exit-code")[1] == 0
+      sh_with_code("git status --porcelain")[0].empty?
     end
 
     def git_push
@@ -63,15 +71,17 @@ module Emeril
     end
 
     def guard_clean
-      clean? or raise("There are files that need to be committed first.")
+      clean? or raise GitNotCleanError,
+        "There are files that need to be committed first."
     end
 
     def perform_git_push(options = '')
-      cmd = "git push #{options}"
+      cmd = "git push origin master #{options}"
       out, code = sh_with_code(cmd)
       if code != 0
-        raise "Couldn't git push. `#{cmd}' failed with the following output:" +
-          "\n\n#{out}\n"
+        raise GitPushError,
+          "Couldn't git push. `#{cmd}' failed with the following output:" +
+            "\n\n#{out}\n"
       end
     end
 
