@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cookbooks.opscode.com/api/v1/cookbooks/mysql
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - ngx_openresty
+      Date:
+      - Sun, 19 May 2013 03:02:46 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '2808'
+      Connection:
+      - keep-alive
+      Status:
+      - 200 OK
+      Set-Cookie:
+      - _sandbox_session=eyJsb2NhdGlvbiI6eyJpZCI6Im15c3FsIiwiY29udHJvbGxlciI6ImFwaS92MS9jb29rYm9va3MiLCJhY3Rpb24iOiJzaG93In0sInNlc3Npb25faWQiOiI3NTY3ZjExMjRlMDI5NWIyNGQ5NDY2ZDNiOGRmZmNiOCJ9--80263530e5c554f2052ce6f25b2dbeb8136a8a6a;
+        domain=.opscode.com; path=/; HttpOnly
+      - logged-in-username=; domain=.opscode.com; path=/
+      Etag:
+      - ! '"1379d0fdf0632ffd7d4488ae01199dd3"'
+      X-Runtime:
+      - '25'
+      Cache-Control:
+      - private, max-age=0, must-revalidate
+    body:
+      encoding: US-ASCII
+      string: ! '{"description":"Installs and configures mysql for client or server","created_at":"2009-10-28T19:16:54Z","average_rating":4.33333,"versions":["http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/3_0_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/2_1_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/2_1_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/2_0_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/2_0_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_3_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_2_6","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_2_4","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_2_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_2_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_8","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_7","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_6","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_5","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_4","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_3","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_4","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_3","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_23_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_23_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_22_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_5","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_3","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_20_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_15_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_10_0"],"latest_version":"http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/3_0_0","updated_at":"2013-04-12T22:58:50Z","category":"Databases","external_url":"github.com/opscode-cookbooks/mysql","maintainer":"opscode","name":"mysql"}'
+    http_version: 
+  recorded_at: Sun, 19 May 2013 03:02:49 GMT
+recorded_with: VCR 2.5.0

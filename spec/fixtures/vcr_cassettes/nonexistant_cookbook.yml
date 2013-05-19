@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cookbooks.opscode.com/api/v1/cookbooks/fooboobunnyyaya
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - ngx_openresty
+      Date:
+      - Sun, 19 May 2013 03:06:33 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Content-Length:
+      - '71'
+      Connection:
+      - keep-alive
+      Status:
+      - 404 Not Found
+      Cache-Control:
+      - no-cache
+    body:
+      encoding: US-ASCII
+      string: ! '{"error_code":"NOT_FOUND","error_messages":["Resource does not exist"]}'
+    http_version: 
+  recorded_at: Sun, 19 May 2013 03:06:36 GMT
+recorded_with: VCR 2.5.0
