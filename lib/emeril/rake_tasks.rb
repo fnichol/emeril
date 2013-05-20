@@ -13,19 +13,19 @@ module Emeril
   #
   class RakeTasks < ::Rake::TaskLib
 
+    attr_accessor :config
+
     # Creates Emeril Rake tasks and allows the callee to configure it.
     #
     # @yield [self] gives itself to the block
     #
     def initialize
-      @logger = Chef::Log
+      @config = { :logger => Chef::Log }
       yield self if block_given?
       define
     end
 
     private
-
-    attr_accessor :logger
 
     def define
       metadata = Emeril::MetadataChopper.new("metadata.rb")
@@ -34,7 +34,7 @@ module Emeril
         " and push to the Community Site"
       task "release" do
         Chef::Knife.new.configure_chef
-        Emeril::Releaser.new(:logger => logger).run
+        Emeril::Releaser.new(@config).run
       end
     end
   end

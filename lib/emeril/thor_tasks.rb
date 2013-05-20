@@ -15,20 +15,20 @@ module Emeril
 
     namespace :emeril
 
+    attr_accessor :config
+
     # Creates Emeril Thor tasks and allows the callee to configure it.
     #
     # @yield [self] gives itself to the block
     #
     def initialize(*args)
       super
-      @logger = Chef::Log
+      @config = { :logger => Chef::Log }
       yield self if block_given?
       define
     end
 
     private
-
-    attr_accessor :logger
 
     def define
       metadata = Emeril::MetadataChopper.new("metadata.rb")
@@ -38,7 +38,7 @@ module Emeril
         "Create git tag for #{artifact} and push to the Community Site"
       self.class.send(:define_method, :release) do
         Chef::Knife.new.configure_chef
-        Emeril::Releaser.new(:logger => logger).run
+        Emeril::Releaser.new(@config).run
       end
     end
   end
