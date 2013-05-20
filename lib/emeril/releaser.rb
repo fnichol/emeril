@@ -1,5 +1,10 @@
 # -*- encoding: utf-8 -*-
 
+require 'emeril/category'
+require 'emeril/git_tagger'
+require 'emeril/metadata_chopper'
+require 'emeril/publisher'
+
 module Emeril
 
   # Tags a git commit with a version string and pushes the cookbook to the
@@ -60,7 +65,6 @@ module Emeril
     def default_publisher
       Publisher.new(
         :logger => logger,
-        :source_path => source_path,
         :source_path => source_path,
         :name => metadata[:name],
         :category => category
