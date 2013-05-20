@@ -36,7 +36,7 @@ module Emeril
 
       self.class.desc "release",
         "Create git tag for #{artifact} and push to the Community Site"
-      self.class.send(:define_method, :all) do
+      self.class.send(:define_method, :release) do
         Chef::Knife.new.configure_chef
         Emeril::Releaser.new(:logger => logger).run
       end
