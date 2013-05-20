@@ -28,6 +28,8 @@ module Emeril
     # @option options [String] name (required) the name of the cookbook
     # @option options [String] category a Community Site category for the
     #   cookbook
+    # @option options [Chef::Knife] knife_class an alternate Knife plugin class
+    #   to create, configure, and invoke
     # @raise [ArgumentError] if any required options are not set
     #
     def initialize(options = {})
@@ -35,6 +37,7 @@ module Emeril
       @source_path = options.fetch(:source_path, Dir.pwd)
       @name = options.fetch(:name) { raise ArgumentError, ":name must be set" }
       @category = options[:category]
+      @knife_class = options.fetch(:knife_class, SharePlugin)
       validate_chef_config!
     end
 
@@ -43,7 +46,7 @@ module Emeril
     #
     def run
       sandbox_path = sandbox_cookbook
-      share = SharePlugin.new
+      share = knife_class.new
       share.ui = logging_ui(share.ui)
       share.config[:cookbook_path] = sandbox_path
       share.name_args = [name, category]
@@ -52,9 +55,9 @@ module Emeril
       FileUtils.remove_dir(sandbox_path)
     end
 
-    private
+    protected
 
-    attr_reader :logger, :source_path, :name, :category
+    attr_reader :logger, :source_path, :name, :category, :knife_class
 
     def validate_chef_config!
       %w{node_name client_key}.map(&:to_sym).each do |attr|
