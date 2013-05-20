@@ -54,7 +54,7 @@ module Emeril
     attr_reader :logger, :source_path, :tag_prefix, :version
 
     def already_tagged?
-      if sh('git tag').split(/\n/).include?(version_tag)
+      if sh_with_code('git tag')[0].split(/\n/).include?(version_tag)
         info("Tag #{version_tag} has already been created.")
         true
       end
@@ -85,18 +85,6 @@ module Emeril
       end
     end
 
-    def sh(cmd, &block)
-      out, code = sh_with_code(cmd, &block)
-      if code == 0
-        out
-      elsif out.empty?
-        raise "Running `#{cmd}' failed." +
-          " Run this command directly for more detailed output."
-      else
-        raise out
-      end
-    end
-
     def sh_with_code(cmd, &block)
       cmd << " 2>&1"
       outbuf = ''
@@ -111,12 +99,12 @@ module Emeril
     end
 
     def tag_version
-      sh "git tag -a -m \"Version #{version}\" #{version_tag}"
-      info "Tagged #{version_tag}."
+      sh_with_code(%{git tag -a -m \"Version #{version}\" #{version_tag}})
+      info("Tagged #{version_tag}.")
       yield if block_given?
     rescue
-      error "Untagging #{version_tag} due to error."
-      sh_with_code "git tag -d #{version_tag}"
+      error("Untagging #{version_tag} due to error.")
+      sh_with_code("git tag -d #{version_tag}")
       raise
     end
 
