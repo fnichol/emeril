@@ -2,6 +2,10 @@
 
 module Emeril
 
+  # Exception class raised when there is a metadata.rb parsing issue.
+  #
+  class MetadataParseError < StandardError ; end
+
   # A rather insane and questionable class to quickly consume a metadata.rb
   # file and return the cookbook name and version attributes.
   #
@@ -20,8 +24,9 @@ module Emeril
     def initialize(metadata_file)
       eval(IO.read(metadata_file), nil, metadata_file)
       %w{name version}.map(&:to_sym).each do |attr|
-        if self[:name].nil?
-          raise "Missing attribute `#{attr}' must be set in #{metadata_file}"
+        if self[attr].nil?
+          raise MetadataParseError,
+            "Missing attribute `#{attr}' must be set in #{metadata_file}"
         end
       end
     end
