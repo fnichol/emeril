@@ -33,7 +33,14 @@ module Emeril
     def initialize(options = {})
       @logger = options[:logger]
       @source_path = options.fetch(:source_path, Dir.pwd)
-      @tag_prefix = options.fetch(:tag_prefix, DEFAULT_TAG_PREFIX)
+      @tag_prefix = case options[:tag_prefix]
+      when nil then
+        DEFAULT_TAG_PREFIX
+      when false
+        ""
+      else
+        options[:tag_prefix]
+      end
       @version = options.fetch(:version) do
         raise ArgumentError, ":version must be set"
       end

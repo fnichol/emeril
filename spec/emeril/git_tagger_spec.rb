@@ -8,21 +8,13 @@ require 'emeril/git_tagger'
 
 describe Emeril::GitTagger do
 
-
-  let(:sandbox_path) { File.join(Dir.mktmpdir, "emeril") }
+  let(:sandbox_path)  { File.join(Dir.mktmpdir, "emeril") }
 
   let(:git_tagger) do
-    if ENV['DEBUG']
-      logger = Logger.new(STDOUT)
-      logger.level = Logger::DEBUG
-    else
-      logger = nil
-    end
-
     Emeril::GitTagger.new(
       :source_path => sandbox_path,
       :version => "4.1.1",
-      :logger => logger
+      :logger => nil
     )
   end
 
@@ -46,6 +38,28 @@ describe Emeril::GitTagger do
     it "tags the repo" do
       git_tagger.run
       run_cmd(%{git tag}).must_match /^v4.1.1$/
+    end
+
+    it "disables the tag prefix" do
+      Emeril::GitTagger.new(
+        :source_path => sandbox_path,
+        :version => "4.1.1",
+        :logger => nil,
+        :tag_prefix => false
+      ).run
+
+      run_cmd(%{git tag}).must_match /^4.1.1$/
+    end
+
+    it "uses a custom tag prefix" do
+      Emeril::GitTagger.new(
+        :source_path => sandbox_path,
+        :version => "4.1.1",
+        :logger => nil,
+        :tag_prefix => "version-"
+      ).run
+
+      run_cmd(%{git tag}).must_match /^version-4.1.1$/
     end
 
     it "pushes the tag to the remote" do

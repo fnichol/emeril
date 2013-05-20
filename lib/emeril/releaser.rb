@@ -28,6 +28,7 @@ module Emeril
     #
     def initialize(options = {})
       @logger = options[:logger]
+      @tag_prefix = options[:tag_prefix]
       @source_path = options.fetch(:source_path, Dir.pwd)
       @metadata = options.fetch(:metadata) { default_metadata }
       @category = options.fetch(:category) { default_category }
@@ -46,7 +47,7 @@ module Emeril
 
     DEFAULT_CATEGORY = "Other".freeze
 
-    attr_reader :logger, :source_path, :metadata,
+    attr_reader :logger, :tag_prefix, :source_path, :metadata,
       :category, :git_tagger, :publisher
 
     def default_metadata
@@ -58,7 +59,8 @@ module Emeril
       GitTagger.new(
         :logger => logger,
         :source_path => source_path,
-        :version => metadata[:version]
+        :version => metadata[:version],
+        :tag_prefix => tag_prefix
       )
     end
 
