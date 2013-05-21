@@ -1,8 +1,9 @@
 # <a name="title"></a> Emeril: Tag And Release Chef Cookbooks As A Library
 
+[![Gem Version](https://badge.fury.io/rb/emeril.png)](http://badge.fury.io/rb/emeril)
 [![Build Status](https://travis-ci.org/fnichol/emeril.png?branch=master)](https://travis-ci.org/fnichol/emeril)
-[![Dependency Status](https://gemnasium.com/fnichol/emeril.png)](https://gemnasium.com/fnichol/emeril)
 [![Code Climate](https://codeclimate.com/github/fnichol/emeril.png)](https://codeclimate.com/github/fnichol/emeril)
+[![Dependency Status](https://gemnasium.com/fnichol/emeril.png)](https://gemnasium.com/fnichol/emeril)
 
 Kick it up a notch! Emeril is a library that helps you release your Chef
 cookbooks from Rake, Thor, or a Ruby library. If `rake release` is all you
