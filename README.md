@@ -81,8 +81,8 @@ gem install emeril
 ### <a name="usage-setup"></a> Credentials Setup
 
 Emeril currently uses the [CookbookSiteShare][knife_plugin] to do most of the
-heavy lifting, so you will need a minimally configured `knife.rb` file with
-some required attributes set.
+heavy lifting, so you will need a minimally configured [knife.rb][knife_rb]
+file with some required attributes set.
 
 There are 2 configuration items you need:
 
@@ -164,8 +164,8 @@ The Ruby API is fairly straight forward, but keep in mind that loading or
 populating `Chef::Config[:node_name]` and `Chef::Config[:client_key]` is
 the responsibility of the caller, not Emeril.
 
-For example, to load configuration from `knife.rb` and invoke the same
-code as the default Rake and Thor tasks, use the following:
+For example, to load configuration from [knife.rb][knife_rb] and invoke the
+same code as the default Rake and Thor tasks, use the following:
 
 ```ruby
 # Populate Chef::Config from knife.rb
@@ -192,12 +192,14 @@ Emeril::Releaser.new(logger: Chef::Log).run
   of the changelog is up to each author, it is sometimes desirable to
   combine the version bump and changelog items in [one][ex1] [git][ex2]
   [commit][ex3]. Emeril will tag and release your cookbook based on the
-  last Git commit which is presumably your version-bump-and-changelog
+  last Git commit which is presumably your *version-bump-and-changelog*
   commit.
 * **"How do I change the category for my cookbook?"** Emeril will maintain
   the category used on the Community Site across releases. By default, new
   cookbooks will be put in the `"Other"` category. For now you can change
-  the category directly on the Community Site, done!
+  the category directly on the Community Site, done! Otherwise, check out
+  the [Rake](#usage-rake) and [Thor](#usage-thor) sections for further
+  configuration help.
 * **"Why is Emeril complaining that I'm missing the name attribute in my
   metadata.rb?"** You want to set this name attribute. It unambiguously sets
   the name of the cookbook and not the directory name that happens to contain
@@ -252,6 +254,7 @@ MIT (see [LICENSE.txt][license])
 [fc045]:            http://acrmp.github.io/foodcritic/#FC045
 [foodcritic_site]:  http://acrmp.github.io/foodcritic/
 [knife_plugin]:     https://github.com/opscode/chef/blob/master/lib/chef/knife/cookbook_site_share.rb
+[knife_rb]:         http://docs.opscode.com/config_rb_knife.html
 [knife_community]:  http://miketheman.github.io/knife-community/
 [knife_share]:      http://docs.opscode.com/knife_cookbook_site.html#share
 [publisher_class]:  https://github.com/fnichol/emeril/blob/master/lib/emeril/publisher.rb
