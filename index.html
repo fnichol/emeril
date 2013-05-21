@@ -1,0 +1,299 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Emeril by fnichol</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Emeril</h1>
+        <p>Tag And Release Chef Cookbooks As A Library</p>
+
+        <p class="view"><a href="https://github.com/fnichol/emeril">View the Project on GitHub <small>fnichol/emeril</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/fnichol/emeril/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/fnichol/emeril/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/fnichol/emeril">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><a href="https://travis-ci.org/fnichol/emeril"><img src="https://travis-ci.org/fnichol/emeril.png?branch=master" alt="Build Status"></a>
+<a href="https://gemnasium.com/fnichol/emeril"><img src="https://gemnasium.com/fnichol/emeril.png" alt="Dependency Status"></a>
+<a href="https://codeclimate.com/github/fnichol/emeril"><img src="https://codeclimate.com/github/fnichol/emeril.png" alt="Code Climate"></a></p>
+
+<p>Kick it up a notch! Emeril is a library that helps you release your Chef
+cookbooks from Rake, Thor, or a Ruby library. If <code>rake release</code> is all you
+are after, this should fit the bill.</p>
+
+<h2>
+<a name="tl-dr"></a> tl;dr</h2>
+
+<p>How do you get started? Without much fanfare…</p>
+
+<div class="highlight"><pre><span class="nb">echo</span> <span class="s2">"gem 'emeril'"</span> &gt; Gemfile
+bundle install
+<span class="nb">echo</span> <span class="s2">"require 'emeril/rake'"</span> &gt; Rakefile
+bundle <span class="nb">exec </span>rake release
+</pre></div>
+
+<p><strong>Bam!</strong></p>
+
+<p>Need more details? Read on…</p>
+
+<h2>
+<a name="how-it-works"></a> How It Works</h2>
+
+<p>Emeril has 2 primary tasks and goals:</p>
+
+<ol>
+<li>Tag a Git commit with a semantic version tag with the form <code>"v1.2.5"</code> (by
+default)</li>
+<li>Publish a versioned release of the cookbook to the
+<a href="http://community.opscode.com/">Community Site</a>
+</li>
+</ol><p>The Git tagging is currently accomplished via shell out, so Git must be
+installed on your system.</p>
+
+<p>In order to bypass the deeply coupled <code>cookbook_path</code> assumptions that exist
+in the Knife plugins, the publishing task (implemented by the
+<a href="https://github.com/fnichol/emeril/blob/master/lib/emeril/publisher.rb">Publisher class</a>) will create a temporary sandboxed copy
+of the primary cookbook files for use by the
+<a href="https://github.com/opscode/chef/blob/master/lib/chef/knife/cookbook_site_share.rb">CookbookSiteShare</a> Knife plugin. The following files are
+considered production cookbook files:</p>
+
+<ul>
+<li><code>README.*</code></li>
+<li><code>CHANGELOG.*</code></li>
+<li><code>metadata.{json,rb}</code></li>
+<li><code>attributes/**/*</code></li>
+<li><code>files/**/*</code></li>
+<li><code>libraries/**/*</code></li>
+<li><code>providers/**/*</code></li>
+<li><code>recipes/**/*</code></li>
+<li><code>resources/**/*</code></li>
+<li><code>templates/**/*</code></li>
+</ul><p>If the above list seems incomplete or incorrect, please submit an
+<a href="https://github.com/fnichol/emeril/issues">issue</a>.</p>
+
+<h2>
+<a name="installation"></a> Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'emeril'</span>
+</pre></div>
+
+<p>And then execute:</p>
+
+<div class="highlight"><pre>bundle
+</pre></div>
+
+<p>Or install it yourself as:</p>
+
+<div class="highlight"><pre>gem install emeril
+</pre></div>
+
+<h2>
+<a name="usage"></a> Usage</h2>
+
+<h3>
+<a name="usage-setup"></a> Credentials Setup</h3>
+
+<p>Emeril currently uses the <a href="https://github.com/opscode/chef/blob/master/lib/chef/knife/cookbook_site_share.rb">CookbookSiteShare</a> to do most of the
+heavy lifting, so you will need a minimally configured <a href="http://docs.opscode.com/config_rb_knife.html">knife.rb</a>
+file with some required attributes set.</p>
+
+<p>There are 2 configuration items you need:</p>
+
+<ol>
+<li>Your <a href="http://community.opscode.com/">Community Site</a> username, chosen at signup time.</li>
+<li>The file path to your <a href="http://community.opscode.com/">Community Site</a> user certificate.
+When you sign up to the Community Site, the site will provide this key to
+you as a <code>*.pem</code> file.</li>
+</ol><p>The easiest way to get setup is to add both of these items to your default
+<code>knife.rb</code> file located at <code>$HOME/.chef/knife.rb</code>. If you are setting this
+file up for the first time, give this a go (substituting your username, and
+key location):</p>
+
+<div class="highlight"><pre>mkdir -p <span class="nv">$HOME</span>/.chef
+cat <span class="s">&lt;&lt;KNIFE_RB &gt; $HOME/.chef/knife.rb</span>
+<span class="s">node_name     "fnichol"</span>
+<span class="s">client_key    File.expand_path('~/.chef/fnichol.pem')</span>
+<span class="s">KNIFE_RB</span>
+</pre></div>
+
+<h3>
+<a name="usage-rake"></a> Rake Tasks</h3>
+
+<p>To add the default Rake task (<code>rake release</code>), add the following to your
+<code>Rakefile</code>:</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/rake'</span>
+</pre></div>
+
+<p>If you need to further customize the <code>Emeril::Releaser</code> object you can use
+the more explicit format with a block:</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/rake_tasks'</span>
+
+<span class="ss">Emeril</span><span class="p">:</span><span class="ss">:RakeTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="c1"># turn on debug logging</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:logger</span><span class="o">].</span><span class="n">level</span> <span class="o">=</span> <span class="ss">:debug</span>
+
+  <span class="c1"># disable git tag prefix string</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:tag_prefix</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span>
+
+  <span class="c1"># set a category for this cookbook</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:category</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"Applications"</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>
+<a name="usage-rake"></a> Thor Tasks</h3>
+
+<p>To add the default Thor task (<code>thor emeril:release</code>), add the following to your
+<code>Thorfile</code>:</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/thor'</span>
+</pre></div>
+
+<p>If you need to further customize the <code>Emeril::Releaser</code> object you can use
+the more explicit format with a block:</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/thor_tasks'</span>
+
+<span class="ss">Emeril</span><span class="p">:</span><span class="ss">:ThorTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="c1"># turn on debug logging</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:logger</span><span class="o">].</span><span class="n">level</span> <span class="o">=</span> <span class="ss">:debug</span>
+
+  <span class="c1"># disable git tag prefix string</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:tag_prefix</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span>
+
+  <span class="c1"># set a category for this cookbook</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:category</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"Applications"</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>
+<a name="usage-ruby"></a> Ruby Library</h3>
+
+<p>The Ruby API is fairly straight forward, but keep in mind that loading or
+populating <code>Chef::Config[:node_name]</code> and <code>Chef::Config[:client_key]</code> is
+the responsibility of the caller, not Emeril.</p>
+
+<p>For example, to load configuration from <a href="http://docs.opscode.com/config_rb_knife.html">knife.rb</a> and invoke the
+same code as the default Rake and Thor tasks, use the following:</p>
+
+<div class="highlight"><pre><span class="c1"># Populate Chef::Config from knife.rb</span>
+<span class="nb">require</span> <span class="s1">'chef/knife'</span>
+<span class="ss">Chef</span><span class="p">:</span><span class="ss">:Knife</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">configure_chef</span>
+
+<span class="c1"># Perform the git tagging and share to the Community Site</span>
+<span class="nb">require</span> <span class="s1">'emeril'</span>
+<span class="ss">Emeril</span><span class="p">:</span><span class="ss">:Releaser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">logger</span><span class="p">:</span> <span class="ss">Chef</span><span class="p">:</span><span class="ss">:Log</span><span class="p">)</span><span class="o">.</span><span class="n">run</span>
+</pre></div>
+
+<h2>
+<a name="faq"></a> Frequently Asked Questions</h2>
+
+<ul>
+<li>
+<strong>"Why doesn't Emeril automatically bump version numbers?"</strong>
+Emeril assumes that you are using a <a href="http://semver.org/">Semantic Versioning</a> scheme
+for your cookbooks. Consequently it is very hard to determine what the
+next version number should be when this number is coupled to the changes
+accompanying the release. The next release could contain a bug fix, a new
+feature, or contain a backwards incompatible change--all of which have a
+bearing on the version number.</li>
+<li>
+<strong>"Okay, what if I supplied the version number, couldn't Emeril help me
+then?"</strong> Perhaps, but don't forget the other essential release artifact:
+a project <a href="http://en.wikipedia.org/wiki/Changelog">changelog</a>. While the maintenance schedule
+of the changelog is up to each author, it is sometimes desirable to
+combine the version bump and changelog items in <a href="https://github.com/fnichol/chef-ruby_build/commit/c940b5e9cd40eaba10d6285de6648f4d25fe959d">one</a> <a href="https://github.com/fnichol/chef-homesick/commit/80e558ff921f1c59698f6942214c0224a24392d7">git</a>
+<a href="https://github.com/fnichol/chef-openoffice/commit/bf84aba0690a6b155b499b06df953be19a3aead1">commit</a>. Emeril will tag and release your cookbook based on the
+last Git commit which is presumably your <em>version-bump-and-changelog</em>
+commit.</li>
+<li>
+<strong>"How do I change the category for my cookbook?"</strong> Emeril will maintain
+the category used on the Community Site across releases. By default, new
+cookbooks will be put in the <code>"Other"</code> category. For now you can change
+the category directly on the Community Site, done! Otherwise, check out
+the <a href="#usage-rake">Rake</a> and <a href="#usage-thor">Thor</a> sections for further
+configuration help.</li>
+<li>
+<strong>"Why is Emeril complaining that I'm missing the name attribute in my
+metadata.rb?"</strong> You want to set this name attribute. It unambiguously sets
+the name of the cookbook and not the directory name that happens to contain
+the cookbook code. Modern tools such as <a href="http://berkshelf.com/">Berkshelf</a> require
+this for dependency resolution and the <a href="http://acrmp.github.io/foodcritic/">Foodcritic</a>
+cookbook linting tool has rule <a href="http://acrmp.github.io/foodcritic/#FC045">FC045</a> to help catch this omission.</li>
+</ul><h2>
+<a name="alternatives"></a> Alternatives</h2>
+
+<ul>
+<li>
+<a href="http://miketheman.github.io/knife-community/">knife-community</a> - a more complete, workflow-enabled tool
+by <a href="https://github.com/miketheman">Mike Fiedler</a>.</li>
+<li>
+<a href="http://docs.opscode.com/knife_cookbook_site.html#share">knife community site share</a> - with some extra/manual git
+tagging, correct directory structure, and workflow. Ships with the
+<a href="https://github.com/opscode/chef">Chef gem</a>.</li>
+</ul><h2>
+<a name="development"></a> Development</h2>
+
+<ul>
+<li>Source hosted at <a href="https://github.com/fnichol/emeril">GitHub</a>
+</li>
+<li>Report issues/questions/feature requests on <a href="https://github.com/fnichol/emeril/issues">GitHub Issues</a>
+</li>
+</ul><p>Pull requests are very welcome! Make sure your patches are well tested.
+Ideally create a topic branch for every separate change you make. For
+example:</p>
+
+<ol>
+<li>Fork the repo</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol><h2>
+<a name="authors"></a> Authors</h2>
+
+<p>Created and maintained by <a href="https://github.com/fnichol">Fletcher Nichol</a> (<a href="mailto:fnichol@nichol.ca">fnichol@nichol.ca</a>)</p>
+
+<h2>
+<a name="license"></a> License</h2>
+
+<p>MIT (see <a href="https://github.com/fnichol/emeril/blob/master/LICENSE.txt">LICENSE.txt</a>)</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/fnichol">fnichol</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-29670723-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
