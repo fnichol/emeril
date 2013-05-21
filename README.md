@@ -24,6 +24,13 @@ bundle exec rake release
 
 Need more details? Read on&hellip;
 
+## <a name="screencast"></a> Screencast
+
+Here is a short screencast demonstating how Emeril can be used to release
+a cookbook to the Community Site.
+
+[![Emeril screencast](https://raw.github.com/fnichol/emeril/master/images/emeril-vid.png)](http://vimeo.com/fnichol/emeril)
+
 ## <a name="how-it-works"></a> How It Works
 
 Emeril has 2 primary tasks and goals:
