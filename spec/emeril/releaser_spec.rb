@@ -137,5 +137,22 @@ describe Emeril::Releaser do
 
       releaser.run
     end
+
+    describe 'when disabling community site publishing' do
+      it 'does not call #run on publisher' do
+        releaser = Emeril::Releaser.new(
+          :metadata => metadata,
+          :category => category,
+          :git_tagger => git_tagger,
+          :publisher => publisher,
+          :publish_to_community => false
+        )
+        publisher.unstub(:run)
+        publisher.expects(:run).never
+
+        releaser.run
+      end
+
+    end
   end
 end
