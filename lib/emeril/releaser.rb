@@ -7,8 +7,8 @@ require 'emeril/publisher'
 
 module Emeril
 
-  # Tags a git commit with a version string and pushes the cookbook to the
-  # Community Site.
+  # Tags a git commit with a version string and (optionally) pushes the
+  # cookbook to the Community Site.
   #
   # @author Fletcher Nichol <fnichol@nichol.ca>
   #
@@ -24,6 +24,9 @@ module Emeril
     #   cookbook
     # @option options [GitTagger] git_tagger a git tagger
     # @option options [Publisher] publisher a publisher
+    # @option options [Boolean] publish_to_community a boolean which
+    #   controls if the cookbook will published on the Community Site (the
+    #   default is to publish)
     # @raise [ArgumentError] if any required options are not set
     #
     def initialize(options = {})
@@ -34,13 +37,14 @@ module Emeril
       @category = options.fetch(:category) { default_category }
       @git_tagger = options.fetch(:git_tagger) { default_git_tagger }
       @publisher = options.fetch(:publisher) { default_publisher }
+      @publish_to_community = options.fetch(:publish_to_community) { true }
     end
 
     # Tags and releases a cookbook.
     #
     def run
       git_tagger.run
-      publisher.run
+      publisher.run if publish_to_community
     end
 
     private
@@ -48,7 +52,7 @@ module Emeril
     DEFAULT_CATEGORY = "Other".freeze
 
     attr_reader :logger, :tag_prefix, :source_path, :metadata,
-      :category, :git_tagger, :publisher
+      :category, :git_tagger, :publisher, :publish_to_community
 
     def default_metadata
       metadata_file = File.expand_path(File.join(source_path, "metadata.rb"))
