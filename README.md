@@ -37,7 +37,7 @@ Emeril has 2 primary tasks and goals:
 
 1. Tag a Git commit with a semantic version tag with the form `"v1.2.5"` (by
    default)
-2. Publish a versioned release of the cookbook to the
+2. Optionally publish a versioned release of the cookbook to the
    [Community Site][community_site]
 
 The Git tagging is currently accomplished via shell out, so Git must be
@@ -139,6 +139,17 @@ Emeril::RakeTasks.new do |t|
 end
 ```
 
+If your cookbook is not on the Community Site, you can skip the publishing step
+with the block form:
+
+```ruby
+require 'emeril/rake_tasks'
+
+Emeril::RakeTasks.new do |t|
+  t.config[:publish_to_community] = false
+end
+```
+
 ### <a name="usage-rake"></a> Thor Tasks
 
 To add the default Thor task (`thor emeril:release`), add the following to your
@@ -163,6 +174,17 @@ Emeril::ThorTasks.new do |t|
 
   # set a category for this cookbook
   t.config[:category] = "Applications"
+end
+```
+
+If your cookbook is not on the Community Site, you can skip the publishing step
+with the block form:
+
+```ruby
+require 'emeril/thor_tasks'
+
+Emeril::ThorTasks.new do |t|
+  t.config[:publish_to_community] = false
 end
 ```
 
