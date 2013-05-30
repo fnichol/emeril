@@ -38,7 +38,7 @@ cookbooks from Rake, Thor, or a Ruby library. If <code>rake release</code> is al
 are after, this should fit the bill.</p>
 
 <h2>
-<a name="tl-dr"></a> tl;dr</h2>
+<a name="-tldr" class="anchor" href="#-tldr"><span class="octicon octicon-link"></span></a><a name="tl-dr"></a> tl;dr</h2>
 
 <p>How do you get started? Without much fanfare…</p>
 
@@ -53,7 +53,7 @@ bundle <span class="nb">exec </span>rake release
 <p>Need more details? Read on…</p>
 
 <h2>
-<a name="screencast"></a> Screencast</h2>
+<a name="-screencast" class="anchor" href="#-screencast"><span class="octicon octicon-link"></span></a><a name="screencast"></a> Screencast</h2>
 
 <p>Here is a short screencast demonstating how Emeril can be used to release
 a cookbook to the Community Site.</p>
@@ -61,7 +61,7 @@ a cookbook to the Community Site.</p>
 <p><a href="http://vimeo.com/fnichol/emeril"><img src="https://raw.github.com/fnichol/emeril/master/images/emeril-vid.png" alt="Emeril screencast"></a></p>
 
 <h2>
-<a name="how-it-works"></a> How It Works</h2>
+<a name="-how-it-works" class="anchor" href="#-how-it-works"><span class="octicon octicon-link"></span></a><a name="how-it-works"></a> How It Works</h2>
 
 <p>Emeril has 2 primary tasks and goals:</p>
 
@@ -86,6 +86,7 @@ considered production cookbook files:</p>
 <li><code>CHANGELOG.*</code></li>
 <li><code>metadata.{json,rb}</code></li>
 <li><code>attributes/**/*</code></li>
+<li><code>definitions/**/*</code></li>
 <li><code>files/**/*</code></li>
 <li><code>libraries/**/*</code></li>
 <li><code>providers/**/*</code></li>
@@ -96,7 +97,7 @@ considered production cookbook files:</p>
 <a href="https://github.com/fnichol/emeril/issues">issue</a>.</p>
 
 <h2>
-<a name="installation"></a> Installation</h2>
+<a name="-installation" class="anchor" href="#-installation"><span class="octicon octicon-link"></span></a><a name="installation"></a> Installation</h2>
 
 <p>Add this line to your application's Gemfile:</p>
 
@@ -114,10 +115,10 @@ considered production cookbook files:</p>
 </pre></div>
 
 <h2>
-<a name="usage"></a> Usage</h2>
+<a name="-usage" class="anchor" href="#-usage"><span class="octicon octicon-link"></span></a><a name="usage"></a> Usage</h2>
 
 <h3>
-<a name="usage-setup"></a> Credentials Setup</h3>
+<a name="-credentials-setup" class="anchor" href="#-credentials-setup"><span class="octicon octicon-link"></span></a><a name="usage-setup"></a> Credentials Setup</h3>
 
 <p>Emeril currently uses the <a href="https://github.com/opscode/chef/blob/master/lib/chef/knife/cookbook_site_share.rb">CookbookSiteShare</a> to do most of the
 heavy lifting, so you will need a minimally configured <a href="http://docs.opscode.com/config_rb_knife.html">knife.rb</a>
@@ -143,7 +144,7 @@ cat <span class="s">&lt;&lt;KNIFE_RB &gt; $HOME/.chef/knife.rb</span>
 </pre></div>
 
 <h3>
-<a name="usage-rake"></a> Rake Tasks</h3>
+<a name="-rake-tasks" class="anchor" href="#-rake-tasks"><span class="octicon octicon-link"></span></a><a name="usage-rake"></a> Rake Tasks</h3>
 
 <p>To add the default Rake task (<code>rake release</code>), add the following to your
 <code>Rakefile</code>:</p>
@@ -179,7 +180,7 @@ with the block form:</p>
 </pre></div>
 
 <h3>
-<a name="usage-rake"></a> Thor Tasks</h3>
+<a name="-thor-tasks" class="anchor" href="#-thor-tasks"><span class="octicon octicon-link"></span></a><a name="usage-rake"></a> Thor Tasks</h3>
 
 <p>To add the default Thor task (<code>thor emeril:release</code>), add the following to your
 <code>Thorfile</code>:</p>
@@ -215,7 +216,7 @@ with the block form:</p>
 </pre></div>
 
 <h3>
-<a name="usage-ruby"></a> Ruby Library</h3>
+<a name="-ruby-library" class="anchor" href="#-ruby-library"><span class="octicon octicon-link"></span></a><a name="usage-ruby"></a> Ruby Library</h3>
 
 <p>The Ruby API is fairly straight forward, but keep in mind that loading or
 populating <code>Chef::Config[:node_name]</code> and <code>Chef::Config[:client_key]</code> is
@@ -234,7 +235,7 @@ same code as the default Rake and Thor tasks, use the following:</p>
 </pre></div>
 
 <h2>
-<a name="faq"></a> Frequently Asked Questions</h2>
+<a name="-frequently-asked-questions" class="anchor" href="#-frequently-asked-questions"><span class="octicon octicon-link"></span></a><a name="faq"></a> Frequently Asked Questions</h2>
 
 <ul>
 <li>
@@ -269,7 +270,7 @@ the cookbook code. Modern tools such as <a href="http://berkshelf.com/">Berkshel
 this for dependency resolution and the <a href="http://acrmp.github.io/foodcritic/">Foodcritic</a>
 cookbook linting tool has rule <a href="http://acrmp.github.io/foodcritic/#FC045">FC045</a> to help catch this omission.</li>
 </ul><h2>
-<a name="alternatives"></a> Alternatives</h2>
+<a name="-alternatives" class="anchor" href="#-alternatives"><span class="octicon octicon-link"></span></a><a name="alternatives"></a> Alternatives</h2>
 
 <ul>
 <li>
@@ -280,7 +281,7 @@ by <a href="https://github.com/miketheman">Mike Fiedler</a>.</li>
 tagging, correct directory structure, and workflow. Ships with the
 <a href="https://github.com/opscode/chef">Chef gem</a>.</li>
 </ul><h2>
-<a name="development"></a> Development</h2>
+<a name="-development" class="anchor" href="#-development"><span class="octicon octicon-link"></span></a><a name="development"></a> Development</h2>
 
 <ul>
 <li>Source hosted at <a href="https://github.com/fnichol/emeril">GitHub</a>
@@ -298,12 +299,12 @@ example:</p>
 <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
 <li>Create new Pull Request</li>
 </ol><h2>
-<a name="authors"></a> Authors</h2>
+<a name="-authors" class="anchor" href="#-authors"><span class="octicon octicon-link"></span></a><a name="authors"></a> Authors</h2>
 
 <p>Created and maintained by <a href="https://github.com/fnichol">Fletcher Nichol</a> (<a href="mailto:fnichol@nichol.ca">fnichol@nichol.ca</a>)</p>
 
 <h2>
-<a name="license"></a> License</h2>
+<a name="-license" class="anchor" href="#-license"><span class="octicon octicon-link"></span></a><a name="license"></a> License</h2>
 
 <p>MIT (see <a href="https://github.com/fnichol/emeril/blob/master/LICENSE.txt">LICENSE.txt</a>)</p>
       </section>
