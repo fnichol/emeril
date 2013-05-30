@@ -54,6 +54,7 @@ considered production cookbook files:
 * `CHANGELOG.*`
 * `metadata.{json,rb}`
 * `attributes/**/*`
+* `definitions/**/*`
 * `files/**/*`
 * `libraries/**/*`
 * `providers/**/*`
