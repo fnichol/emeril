@@ -76,8 +76,8 @@ module Emeril
 
     def cookbook_files
       entries = %w{
-        README.* CHANGELOG.* metadata.{json,rb}
-        attributes files libraries providers recipes resources templates
+        README.* CHANGELOG.* metadata.{json,rb} attributes definitions
+        files libraries providers recipes resources templates
       }
 
       Dir.glob("#{source_path}/{#{entries.join(',')}}")
