@@ -36,8 +36,11 @@ module Emeril
       @metadata = options.fetch(:metadata) { default_metadata }
       @category = options.fetch(:category) { default_category }
       @git_tagger = options.fetch(:git_tagger) { default_git_tagger }
-      @publisher = options.fetch(:publisher) { default_publisher }
       @publish_to_community = options.fetch(:publish_to_community) { true }
+
+      if publish_to_community
+        @publisher = options.fetch(:publisher) { default_publisher }
+      end
     end
 
     # Tags and releases a cookbook.
