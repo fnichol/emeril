@@ -98,6 +98,21 @@ describe Emeril::Releaser do
       )
     end
 
+    it "does not call Publisher when disabling community site publishing" do
+      Emeril::Publisher.expects(:new).never do |opts|
+        opts[:source_path] == source_path &&
+          opts[:name] == metadata[:name] &&
+          opts[:category] == category
+      end
+
+      Emeril::Releaser.new(
+        :source_path => source_path,
+        :metadata => metadata,
+        :category => category,
+        :publish_to_community => false
+      )
+    end
+
     it "disables the git version tag prefix" do
       Emeril::GitTagger.expects(:new).with do |opts|
         opts[:tag_prefix] == false
