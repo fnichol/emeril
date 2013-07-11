@@ -99,11 +99,7 @@ describe Emeril::Releaser do
     end
 
     it "does not call Publisher when disabling community site publishing" do
-      Emeril::Publisher.expects(:new).never do |opts|
-        opts[:source_path] == source_path &&
-          opts[:name] == metadata[:name] &&
-          opts[:category] == category
-      end
+      Emeril::Publisher.expects(:new).never
 
       Emeril::Releaser.new(
         :source_path => source_path,
