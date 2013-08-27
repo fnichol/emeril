@@ -30,8 +30,8 @@ describe "Releasing and publishing a cookbook" do
       @saved[attr] = Chef::Config[attr]
     end
 
-    Chef::Config[:node_name] = "fnichol"
-    Chef::Config[:client_key] = File.expand_path("~/.chef/fnichol.pem")
+    Chef::Config[:node_name] = ENV["CHEF_NODE_NAME"] || "opsycodesy"
+    Chef::Config[:client_key] = ENV["CHEF_CLIENT_KEY"] || make_client_key!
   end
 
   after do
