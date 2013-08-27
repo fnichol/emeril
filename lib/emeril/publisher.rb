@@ -99,6 +99,7 @@ module Emeril
       def msg(message)
         logger ? logger.info(message) : super
       end
+      alias_method :info, :msg
 
       def err(message)
         logger ? logger.error(message) : super

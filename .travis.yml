@@ -16,3 +16,10 @@ env:
 matrix:
   allow_failures:
   - rvm: ruby-head
+  exclude:
+  - rvm: 2.0.0
+    env: "CHEF_VERSION='~> 11.4.4'"
+  - rvm: 2.0.0
+    env: "CHEF_VERSION='~> 10.26'"
+  - rvm: 2.0.0
+    env: "CHEF_VERSION='~> 0.10.10'"

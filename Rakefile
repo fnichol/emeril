@@ -5,12 +5,18 @@ require 'tailor/rake_task'
 
 Rake::TestTask.new(:unit) do |t|
   t.libs.push "lib"
-  t.test_files = FileList['spec/**/*_spec.rb']
+  t.test_files = FileList['spec/unit/**/*_spec.rb']
+  t.verbose = true
+end
+
+Rake::TestTask.new(:integration) do |t|
+  t.libs.push "lib"
+  t.test_files = FileList['spec/integration/**/*_spec.rb']
   t.verbose = true
 end
 
 desc "Run all test suites"
-task :test => [:unit]
+task :test => [:unit, :integration]
 
 desc "Run cane to check quality metrics"
 Cane::RakeTask.new do |cane|
