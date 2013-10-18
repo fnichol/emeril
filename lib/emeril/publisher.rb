@@ -5,6 +5,7 @@ require 'chef/cookbook_loader'
 require 'chef/cookbook_site_streaming_uploader'
 require 'chef/knife/cookbook_site_share'
 require 'chef/knife/core/ui'
+require 'chef/mixin/command'
 require 'fileutils'
 require 'tmpdir'
 
