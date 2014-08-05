@@ -197,7 +197,6 @@ describe Emeril::Publisher do
 
   def make_cookbook!
     FileUtils.mkdir_p("#{cookbook_path}/recipes")
-    remote_dir = File.join(File.dirname(cookbook_path), "remote")
 
     File.open("#{cookbook_path}/metadata.rb", "wb") do |f|
       f.write <<-METADATA_RB.gsub(/^ {8}/, '')
