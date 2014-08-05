@@ -14,7 +14,7 @@ describe "Releasing and but not publishing a cookbook" do
 
   include Emeril::SpecCommon
 
-  let(:cookbook_path)  { File.join(Dir.mktmpdir, "emeril")}
+  let(:cookbook_path) { File.join(Dir.mktmpdir, "emeril") }
 
   let(:logger) do
     if ENV["DEBUG"]

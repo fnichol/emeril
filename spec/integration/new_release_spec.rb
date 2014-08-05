@@ -43,7 +43,7 @@ describe "Releasing and publishing a cookbook" do
     FileUtils.remove_dir(cookbook_path)
   end
 
-  let(:cookbook_path)  { File.join(Dir.mktmpdir, "emeril")}
+  let(:cookbook_path) { File.join(Dir.mktmpdir, "emeril") }
 
   let(:logger) do
     if ENV["DEBUG"]
