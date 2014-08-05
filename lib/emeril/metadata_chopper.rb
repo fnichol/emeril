@@ -22,7 +22,7 @@ module Emeril
     # @param metadata_file [String] path to a metadata.rb file
     #
     def initialize(metadata_file)
-      eval(IO.read(metadata_file), nil, metadata_file)
+      instance_eval(IO.read(metadata_file), metadata_file)
       %w{name version}.map(&:to_sym).each do |attr|
         next unless self[attr].nil?
 
