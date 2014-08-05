@@ -8,11 +8,11 @@ module Emeril
 
   # Exception class raised when a git repo is not clean.
   #
-  class GitNotCleanError < StandardError ; end
+  class GitNotCleanError < StandardError; end
 
   # Exception class raised when a git push does not return successfully.
   #
-  class GitPushError < StandardError ; end
+  class GitPushError < StandardError; end
 
   # Applies a version tag on a git repository and pushes it to the origin
   # remote.

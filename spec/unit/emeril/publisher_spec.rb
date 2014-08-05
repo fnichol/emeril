@@ -8,7 +8,7 @@ require 'emeril/publisher'
 
 class DummyKnife < Emeril::Publisher::SharePlugin
 
-  def run ; end
+  def run; end
 end
 
 describe Emeril::Publisher do

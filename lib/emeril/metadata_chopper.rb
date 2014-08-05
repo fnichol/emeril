@@ -4,7 +4,7 @@ module Emeril
 
   # Exception class raised when there is a metadata.rb parsing issue.
   #
-  class MetadataParseError < StandardError ; end
+  class MetadataParseError < StandardError; end
 
   # A rather insane and questionable class to quickly consume a metadata.rb
   # file and return the cookbook name and version attributes.
