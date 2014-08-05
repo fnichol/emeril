@@ -61,7 +61,7 @@ describe Emeril::Releaser do
     it "defaults :metadata to use MetadataChopper" do
       Emeril::MetadataChopper.expects(:new).with { |path|
         path =~ /#{File.join(source_path, "metadata.rb")}$/
-      }.returns({ :name => "c", :version => "1.0.0" })
+      }.returns(:name => "c", :version => "1.0.0")
 
       Emeril::Releaser.new(:category => category, :source_path => source_path)
     end
