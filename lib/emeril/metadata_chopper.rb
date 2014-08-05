@@ -24,10 +24,10 @@ module Emeril
     def initialize(metadata_file)
       eval(IO.read(metadata_file), nil, metadata_file)
       %w{name version}.map(&:to_sym).each do |attr|
-        if self[attr].nil?
-          raise MetadataParseError,
-            "Missing attribute `#{attr}' must be set in #{metadata_file}"
-        end
+        next unless self[attr].nil?
+
+        raise MetadataParseError,
+          "Missing attribute `#{attr}' must be set in #{metadata_file}"
       end
     end
 
