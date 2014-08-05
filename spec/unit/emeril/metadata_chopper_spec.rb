@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-require_relative '../../spec_helper'
+require_relative "../../spec_helper"
 
-require 'emeril/metadata_chopper'
+require "emeril/metadata_chopper"
 
 describe Emeril::MetadataChopper do
 
@@ -56,7 +56,7 @@ describe Emeril::MetadataChopper do
 
   def stub_metadata!(name = "foobar", version = "5.2.1")
     File.open("/tmp/metadata.rb", "wb") do |f|
-      f.write <<-METADATA_RB.gsub(/^ {8}/, '')
+      f.write <<-METADATA_RB.gsub(/^ {8}/, "")
         name             "#{name}"
         maintainer       "Michael Bluth"
         maintainer_email "michael@bluth.com"

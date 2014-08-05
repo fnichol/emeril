@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-require 'rake/tasklib'
-require 'chef/knife'
+require "rake/tasklib"
+require "chef/knife"
 
-require 'emeril'
+require "emeril"
 
 module Emeril
 
@@ -30,7 +30,7 @@ module Emeril
     def define
       metadata = Emeril::MetadataChopper.new("metadata.rb")
 
-      desc "Create git tag for #{metadata[:name]}-#{metadata[:version]}" +
+      desc "Create git tag for #{metadata[:name]}-#{metadata[:version]}" \
         " and push to the Community Site"
       task "release" do
         Chef::Knife.new.configure_chef

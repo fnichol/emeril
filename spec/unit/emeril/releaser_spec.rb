@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-require_relative '../../spec_helper'
+require_relative "../../spec_helper"
 
-require 'emeril/releaser'
+require "emeril/releaser"
 
 describe Emeril::Releaser do
 
@@ -16,7 +16,7 @@ describe Emeril::Releaser do
 
   before do
     @saved = Hash.new
-    %w{node_name client_key}.map(&:to_sym).each do |attr|
+    %w[node_name client_key].map(&:to_sym).each do |attr|
       @saved[attr] = Chef::Config[attr]
     end
 
@@ -25,7 +25,7 @@ describe Emeril::Releaser do
   end
 
   after do
-    %w{node_name client_key}.map(&:to_sym).each do |attr|
+    %w[node_name client_key].map(&:to_sym).each do |attr|
       Chef::Config[attr] = @saved.delete(attr)
     end
   end
@@ -51,24 +51,25 @@ describe Emeril::Releaser do
         opts[:source_path] == source_path
       end
 
-      Emeril::Releaser.new(:metadata => metadata, :category => category,
-        :source_path => source_path)
+      Emeril::Releaser.new(
+        :metadata => metadata,
+        :category => category,
+        :source_path => source_path
+      )
     end
 
     it "defaults :metadata to use MetadataChopper" do
       Emeril::MetadataChopper.expects(:new).with { |path|
         path =~ /#{File.join(source_path, "metadata.rb")}$/
-      }.returns({ :name => "c", :version => "1.0.0" })
+      }.returns(:name => "c", :version => "1.0.0")
 
       Emeril::Releaser.new(:category => category, :source_path => source_path)
     end
 
     it "defaults :category to use Category.for_coobook" do
-      Emeril::Category.expects(:for_cookbook).with("wakka")
+      Emeril::Category.expects(:for_cookbook).with("wot")
 
-      Emeril::Releaser.new({
-        :metadata => { :name => "wakka", :version => "1.0.0" }
-      })
+      Emeril::Releaser.new(:metadata => { :name => "wot", :version => "1.0.0" })
     end
 
     it "defaults :git_tagger to use GitTagger" do
@@ -149,8 +150,9 @@ describe Emeril::Releaser do
       releaser.run
     end
 
-    describe 'when disabling community site publishing' do
-      it 'does not call #run on publisher' do
+    describe "when disabling community site publishing" do
+
+      it "does not call #run on publisher" do
         releaser = Emeril::Releaser.new(
           :metadata => metadata,
           :category => category,

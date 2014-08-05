@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-require 'emeril/category'
-require 'emeril/git_tagger'
-require 'emeril/metadata_chopper'
-require 'emeril/publisher'
+require "emeril/category"
+require "emeril/git_tagger"
+require "emeril/metadata_chopper"
+require "emeril/publisher"
 
 module Emeril
 
@@ -37,7 +37,7 @@ module Emeril
       @category = options.fetch(:category) { default_category }
       @git_tagger = options.fetch(:git_tagger) { default_git_tagger }
       @publish_to_community = options.fetch(:publish_to_community) { true }
-      set_publisher(options.fetch(:publisher, nil)) if publish_to_community
+      setup_publisher(options.fetch(:publisher, nil)) if publish_to_community
     end
 
     # Tags and releases a cookbook.
@@ -77,7 +77,7 @@ module Emeril
       )
     end
 
-    def set_publisher(publisher)
+    def setup_publisher(publisher)
       @publisher = publisher || default_publisher
     end
 

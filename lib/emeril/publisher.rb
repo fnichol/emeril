@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 
-require 'chef/cookbook_uploader'
-require 'chef/cookbook_loader'
-require 'chef/cookbook_site_streaming_uploader'
-require 'chef/knife/cookbook_site_share'
-require 'chef/knife/core/ui'
-require 'fileutils'
-require 'tmpdir'
+require "chef/cookbook_uploader"
+require "chef/cookbook_loader"
+require "chef/cookbook_site_streaming_uploader"
+require "chef/knife/cookbook_site_share"
+require "chef/knife/core/ui"
+require "fileutils"
+require "tmpdir"
 
-require 'emeril/logging'
+require "emeril/logging"
 
 module Emeril
 
@@ -60,7 +60,7 @@ module Emeril
     attr_reader :logger, :source_path, :name, :category, :knife_class
 
     def validate_chef_config!
-      %w{node_name client_key}.map(&:to_sym).each do |attr|
+      %w[node_name client_key].map(&:to_sym).each do |attr|
         raise "Chef::Config[:#{attr}] must be set" if ::Chef::Config[attr].nil?
       end
     end
@@ -75,12 +75,12 @@ module Emeril
     end
 
     def cookbook_files
-      entries = %w{
+      entries = %w[
         README.* CHANGELOG.* metadata.{json,rb} attributes definitions
         files libraries providers recipes resources templates
-      }
+      ]
 
-      Dir.glob("#{source_path}/{#{entries.join(',')}}")
+      Dir.glob("#{source_path}/{#{entries.join(",")}}")
     end
 
     def logging_ui(ui)

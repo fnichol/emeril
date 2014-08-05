@@ -1,16 +1,18 @@
 # -*- encoding: utf-8 -*-
 
-require 'emeril/logging'
+require "English"
+
+require "emeril/logging"
 
 module Emeril
 
   # Exception class raised when a git repo is not clean.
   #
-  class GitNotCleanError < StandardError ; end
+  class GitNotCleanError < StandardError; end
 
   # Exception class raised when a git push does not return successfully.
   #
-  class GitPushError < StandardError ; end
+  class GitPushError < StandardError; end
 
   # Applies a version tag on a git repository and pushes it to the origin
   # remote.
@@ -61,7 +63,7 @@ module Emeril
     attr_reader :logger, :source_path, :tag_prefix, :version
 
     def already_tagged?
-      if sh_with_code('git tag')[0].split(/\n/).include?(version_tag)
+      if sh_with_code("git tag")[0].split(/\n/).include?(version_tag)
         info("Tag #{version_tag} has already been created.")
         true
       end
@@ -73,36 +75,38 @@ module Emeril
 
     def git_push
       perform_git_push
-      perform_git_push ' --tags'
+      perform_git_push " --tags"
       info("Pushed git commits and tags.")
     end
 
     def guard_clean
-      clean? or raise GitNotCleanError,
-        "There are files that need to be committed first."
+      if !clean?
+        raise GitNotCleanError,
+          "There are files that need to be committed first."
+      end
     end
 
-    def perform_git_push(options = '')
+    def perform_git_push(options = "")
       cmd = "git push origin master #{options}"
       out, code = sh_with_code(cmd)
       if code != 0
         raise GitPushError,
-          "Couldn't git push. `#{cmd}' failed with the following output:" +
+          "Couldn't git push. `#{cmd}' failed with the following output:" \
             "\n\n#{out}\n"
       end
     end
 
     def sh_with_code(cmd, &block)
       cmd << " 2>&1"
-      outbuf = ''
+      outbuf = ""
       debug(cmd)
       Dir.chdir(source_path) {
         outbuf = `#{cmd}`
-        if $? == 0
+        if $CHILD_STATUS == 0
           block.call(outbuf) if block
         end
       }
-      [outbuf, $?]
+      [outbuf, $CHILD_STATUS]
     end
 
     def tag_version

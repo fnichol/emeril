@@ -1,14 +1,15 @@
 # -*- encoding: utf-8 -*-
 
-require_relative '../../spec_helper'
-require 'chef/knife'
-require 'chef/config'
+require_relative "../../spec_helper"
+require "chef/knife"
+require "chef/config"
 
-require 'emeril/publisher'
+require "emeril/publisher"
 
+# Dummy Knife plugin
 class DummyKnife < Emeril::Publisher::SharePlugin
 
-  def run ; end
+  def run; end
 end
 
 describe Emeril::Publisher do
@@ -17,7 +18,7 @@ describe Emeril::Publisher do
   let(:category)      { "Utilities" }
 
   let(:publisher) do
-    if ENV['DEBUG']
+    if ENV["DEBUG"]
       logger = Logger.new(STDOUT)
       logger.level = Logger::DEBUG
     else
@@ -35,7 +36,7 @@ describe Emeril::Publisher do
 
   before do
     @saved = Hash.new
-    %w{node_name client_key}.map(&:to_sym).each do |attr|
+    %w[node_name client_key].map(&:to_sym).each do |attr|
       @saved[attr] = Chef::Config[attr]
     end
 
@@ -44,7 +45,7 @@ describe Emeril::Publisher do
   end
 
   after do
-    %w{node_name client_key}.map(&:to_sym).each do |attr|
+    %w[node_name client_key].map(&:to_sym).each do |attr|
       Chef::Config[attr] = @saved.delete(attr)
     end
   end
@@ -133,7 +134,7 @@ describe Emeril::Publisher do
       it "calls super if logger is nil" do
         ui_without_logger.msg("yo")
 
-        stdout.string.must_match /^yo$/
+        stdout.string.must_match(/^yo$/)
       end
     end
 
@@ -148,7 +149,7 @@ describe Emeril::Publisher do
       it "calls super if logger is nil" do
         ui_without_logger.err("yolo")
 
-        stderr.string.must_match /^yolo$/
+        stderr.string.must_match(/^yolo$/)
       end
     end
 
@@ -163,7 +164,7 @@ describe Emeril::Publisher do
       it "calls super if logger is nil" do
         ui_without_logger.err("caution")
 
-        stderr.string.must_match /^caution$/
+        stderr.string.must_match(/^caution$/)
       end
     end
 
@@ -178,7 +179,7 @@ describe Emeril::Publisher do
       it "calls super if logger is nil" do
         ui_without_logger.fatal("die")
 
-        stderr.string.must_match /die$/
+        stderr.string.must_match(/die$/)
       end
     end
 
@@ -197,10 +198,9 @@ describe Emeril::Publisher do
 
   def make_cookbook!
     FileUtils.mkdir_p("#{cookbook_path}/recipes")
-    remote_dir = File.join(File.dirname(cookbook_path), "remote")
 
     File.open("#{cookbook_path}/metadata.rb", "wb") do |f|
-      f.write <<-METADATA_RB.gsub(/^ {8}/, '')
+      f.write <<-METADATA_RB.gsub(/^ {8}/, "")
         name             "#{name}"
         maintainer       "Michael Bluth"
         maintainer_email "michael@bluth.com"
@@ -211,7 +211,7 @@ describe Emeril::Publisher do
       METADATA_RB
     end
     File.open("#{cookbook_path}/recipes/default.rb", "wb") do |f|
-      f.write <<-DEFAULT_RB.gsub(/^ {8}/, '')
+      f.write <<-DEFAULT_RB.gsub(/^ {8}/, "")
         directory "/tmp/yeah"
 
         package "bash"

@@ -1,29 +1,34 @@
-require 'bundler/gem_tasks'
-require 'rake/testtask'
-require 'cane/rake_task'
-require 'tailor/rake_task'
+# -*- encoding: utf-8 -*-
+
+require "bundler/gem_tasks"
+require "rake/testtask"
+require "cane/rake_task"
 
 Rake::TestTask.new(:unit) do |t|
   t.libs.push "lib"
-  t.test_files = FileList['spec/unit/**/*_spec.rb']
+  t.test_files = FileList["spec/unit/**/*_spec.rb"]
   t.verbose = true
 end
 
 Rake::TestTask.new(:integration) do |t|
   t.libs.push "lib"
-  t.test_files = FileList['spec/integration/**/*_spec.rb']
+  t.test_files = FileList["spec/integration/**/*_spec.rb"]
   t.verbose = true
 end
 
 desc "Run all test suites"
 task :test => [:unit, :integration]
 
-desc "Run cane to check quality metrics"
-Cane::RakeTask.new do |cane|
-  cane.canefile = './.cane'
+require "finstyle"
+require "rubocop/rake_task"
+RuboCop::RakeTask.new(:style) do |task|
+  task.options << "--display-cop-names"
 end
 
-Tailor::RakeTask.new
+desc "Run cane to check quality metrics"
+Cane::RakeTask.new do |cane|
+  cane.canefile = "./.cane"
+end
 
 desc "Display LOC stats"
 task :stats do
@@ -34,6 +39,6 @@ task :stats do
 end
 
 desc "Run all quality tasks"
-task :quality => [:cane, :tailor, :stats]
+task :quality => [:cane, :style, :stats]
 
 task :default => [:test, :quality]

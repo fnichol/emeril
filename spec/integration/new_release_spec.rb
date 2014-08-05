@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 
-require_relative '../spec_helper'
-require 'vcr'
+require_relative "../spec_helper"
+require "vcr"
 
-require 'chef/knife'
-require 'emeril'
+require "chef/knife"
+require "emeril"
 
 VCR.configure do |config|
+  config.ignore_hosts "codeclimate.com"
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   config.hook_into :webmock
 
@@ -26,23 +27,25 @@ describe "Releasing and publishing a cookbook" do
 
   before do
     @saved = Hash.new
-    %w{node_name client_key}.map(&:to_sym).each do |attr|
+    %w[node_name client_key].map(&:to_sym).each do |attr|
       @saved[attr] = Chef::Config[attr]
     end
 
     Chef::Config[:node_name] = ENV["CHEF_NODE_NAME"] || "opsycodesy"
     Chef::Config[:client_key] = ENV["CHEF_CLIENT_KEY"] || make_client_key!
+    Chef::Config[:cache_options][:path] =
+      File.join(File.dirname(cookbook_path), "cache")
   end
 
   after do
-    %w{node_name client_key}.map(&:to_sym).each do |attr|
+    %w[node_name client_key].map(&:to_sym).each do |attr|
       Chef::Config[attr] = @saved.delete(attr)
     end
 
-    FileUtils.remove_dir(cookbook_path)
+    FileUtils.remove_dir(File.dirname(cookbook_path))
   end
 
-  let(:cookbook_path)  { File.join(Dir.mktmpdir, "emeril")}
+  let(:cookbook_path) { File.join(Dir.mktmpdir, "emeril") }
 
   let(:logger) do
     if ENV["DEBUG"]
@@ -56,14 +59,14 @@ describe "Releasing and publishing a cookbook" do
   end
 
   it "releases a new cookbook" do
-    make_cookbook!(version: "1.2.3")
+    make_cookbook!(:version => "1.2.3")
 
-    VCR.use_cassette('new_release') do
-      Emeril::Releaser.new(logger: logger, source_path: cookbook_path).run
+    VCR.use_cassette("new_release") do
+      Emeril::Releaser.new(:logger => logger, :source_path => cookbook_path).run
     end
 
     # tag was pushed to the remote
-    git_tag = run_cmd("git tag", in: "#{File.dirname(cookbook_path)}/remote")
+    git_tag = run_cmd("git tag", :in => "#{File.dirname(cookbook_path)}/remote")
     git_tag.chomp.must_equal "v1.2.3"
   end
 end
