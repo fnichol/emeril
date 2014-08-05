@@ -91,7 +91,7 @@ module Emeril
       out, code = sh_with_code(cmd)
       if code != 0
         raise GitPushError,
-          "Couldn't git push. `#{cmd}' failed with the following output:" +
+          "Couldn't git push. `#{cmd}' failed with the following output:" \
             "\n\n#{out}\n"
       end
     end
