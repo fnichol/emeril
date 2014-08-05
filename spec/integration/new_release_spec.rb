@@ -33,6 +33,8 @@ describe "Releasing and publishing a cookbook" do
 
     Chef::Config[:node_name] = ENV["CHEF_NODE_NAME"] || "opsycodesy"
     Chef::Config[:client_key] = ENV["CHEF_CLIENT_KEY"] || make_client_key!
+    Chef::Config[:cache_options][:path] =
+      File.join(File.dirname(cookbook_path), "cache")
   end
 
   after do
@@ -40,7 +42,7 @@ describe "Releasing and publishing a cookbook" do
       Chef::Config[attr] = @saved.delete(attr)
     end
 
-    FileUtils.remove_dir(cookbook_path)
+    FileUtils.remove_dir(File.dirname(cookbook_path))
   end
 
   let(:cookbook_path) { File.join(Dir.mktmpdir, "emeril") }
