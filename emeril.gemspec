@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version       = Emeril::VERSION
   spec.authors       = ["Fletcher Nichol"]
   spec.email         = ["fnichol@nichol.ca"]
-  spec.description   = %q{Release Chef cookbooks}
+  spec.description   = "Release Chef cookbooks"
   spec.summary       = spec.description
   spec.homepage      = "http://fnichol.github.io/emeril/"
   spec.license       = "MIT"
