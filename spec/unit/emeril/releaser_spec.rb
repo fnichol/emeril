@@ -67,11 +67,9 @@ describe Emeril::Releaser do
     end
 
     it "defaults :category to use Category.for_coobook" do
-      Emeril::Category.expects(:for_cookbook).with("wakka")
+      Emeril::Category.expects(:for_cookbook).with("wot")
 
-      Emeril::Releaser.new({
-        :metadata => { :name => "wakka", :version => "1.0.0" }
-      })
+      Emeril::Releaser.new(:metadata => { :name => "wot", :version => "1.0.0" })
     end
 
     it "defaults :git_tagger to use GitTagger" do
