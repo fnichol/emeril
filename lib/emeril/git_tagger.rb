@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+require "English"
+
 require 'emeril/logging'
 
 module Emeril
@@ -100,11 +102,11 @@ module Emeril
       debug(cmd)
       Dir.chdir(source_path) {
         outbuf = `#{cmd}`
-        if $? == 0
+        if $CHILD_STATUS == 0
           block.call(outbuf) if block
         end
       }
-      [outbuf, $?]
+      [outbuf, $CHILD_STATUS]
     end
 
     def tag_version
