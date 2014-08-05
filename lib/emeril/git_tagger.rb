@@ -78,8 +78,10 @@ module Emeril
     end
 
     def guard_clean
-      clean? or raise GitNotCleanError,
-        "There are files that need to be committed first."
+      if !clean?
+        raise GitNotCleanError,
+          "There are files that need to be committed first."
+      end
     end
 
     def perform_git_push(options = '')
