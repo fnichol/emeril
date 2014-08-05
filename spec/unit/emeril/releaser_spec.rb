@@ -51,8 +51,11 @@ describe Emeril::Releaser do
         opts[:source_path] == source_path
       end
 
-      Emeril::Releaser.new(:metadata => metadata, :category => category,
-        :source_path => source_path)
+      Emeril::Releaser.new(
+        :metadata => metadata,
+        :category => category,
+        :source_path => source_path
+      )
     end
 
     it "defaults :metadata to use MetadataChopper" do
