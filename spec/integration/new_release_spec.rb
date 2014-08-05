@@ -7,6 +7,7 @@ require 'chef/knife'
 require 'emeril'
 
 VCR.configure do |config|
+  config.ignore_hosts "codeclimate.com"
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   config.hook_into :webmock
 

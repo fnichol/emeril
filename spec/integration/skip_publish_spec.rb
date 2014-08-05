@@ -6,6 +6,10 @@ require 'vcr'
 require 'chef/knife'
 require 'emeril'
 
+VCR.configure do |config|
+  config.ignore_hosts "codeclimate.com"
+end
+
 describe "Releasing and but not publishing a cookbook" do
 
   include Emeril::SpecCommon

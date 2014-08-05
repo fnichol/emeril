@@ -2,7 +2,10 @@
 
 gem 'minitest'
 
-if ENV['SIMPLECOV']
+if ENV["CODECLIMATE_REPO_TOKEN"]
+  require "codeclimate-test-reporter"
+  CodeClimate::TestReporter.start
+elsif ENV["COVERAGE"]
   require 'simplecov'
   SimpleCov.adapters.define 'gem' do
     command_name 'Specs'

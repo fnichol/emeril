@@ -17,6 +17,12 @@ end
 desc "Run all test suites"
 task :test => [:unit, :integration]
 
+require "finstyle"
+require "rubocop/rake_task"
+RuboCop::RakeTask.new(:style) do |task|
+  task.options << "--display-cop-names"
+end
+
 desc "Run cane to check quality metrics"
 Cane::RakeTask.new do |cane|
   cane.canefile = './.cane'
@@ -31,6 +37,6 @@ task :stats do
 end
 
 desc "Run all quality tasks"
-task :quality => [:cane, :stats]
+task :quality => [:cane, :style, :stats]
 
 task :default => [:test, :quality]

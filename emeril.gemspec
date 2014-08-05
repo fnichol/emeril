@@ -25,14 +25,17 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'minitest'
-  spec.add_development_dependency 'guard-minitest'
   spec.add_development_dependency 'mocha'
   spec.add_development_dependency 'fakefs'
   spec.add_development_dependency 'vcr'
   spec.add_development_dependency 'webmock'
 
-  spec.add_development_dependency 'cane'
-  spec.add_development_dependency 'guard-cane'
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'countloc'
+
+  # style and complexity libraries are tightly version pinned as newer releases
+  # may introduce new and undesireable style choices which would be immediately
+  # enforced in CI
+  spec.add_development_dependency "finstyle",  "1.1.0"
+  spec.add_development_dependency "cane",      "2.6.2"
 end
