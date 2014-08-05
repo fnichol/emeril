@@ -47,7 +47,7 @@ module Emeril
 
   module SpecCommon
 
-    def make_cookbook!(opts = {})
+    def make_cookbook!(opts = {}) # rubocop:disable Style/MethodLength
       FileUtils.mkdir_p("#{cookbook_path}/recipes")
       remote_dir = File.join(File.dirname(cookbook_path), "remote")
 
