@@ -39,7 +39,7 @@ describe Emeril::GitTagger do
 
     it "tags the repo" do
       git_tagger.run
-      run_cmd(%{git tag}).must_match /^v4.1.1$/
+      run_cmd(%{git tag}).must_match(/^v4.1.1$/)
     end
 
     it "disables the tag prefix" do
@@ -50,7 +50,7 @@ describe Emeril::GitTagger do
         :tag_prefix => false
       ).run
 
-      run_cmd(%{git tag}).must_match /^4.1.1$/
+      run_cmd(%{git tag}).must_match(/^4.1.1$/)
     end
 
     it "uses a custom tag prefix" do
@@ -61,7 +61,7 @@ describe Emeril::GitTagger do
         :tag_prefix => "version-"
       ).run
 
-      run_cmd(%{git tag}).must_match /^version-4.1.1$/
+      run_cmd(%{git tag}).must_match(/^version-4.1.1$/)
     end
 
     it "pushes the tag to the remote" do

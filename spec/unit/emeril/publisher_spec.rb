@@ -133,7 +133,7 @@ describe Emeril::Publisher do
       it "calls super if logger is nil" do
         ui_without_logger.msg("yo")
 
-        stdout.string.must_match /^yo$/
+        stdout.string.must_match(/^yo$/)
       end
     end
 
@@ -148,7 +148,7 @@ describe Emeril::Publisher do
       it "calls super if logger is nil" do
         ui_without_logger.err("yolo")
 
-        stderr.string.must_match /^yolo$/
+        stderr.string.must_match(/^yolo$/)
       end
     end
 
@@ -163,7 +163,7 @@ describe Emeril::Publisher do
       it "calls super if logger is nil" do
         ui_without_logger.err("caution")
 
-        stderr.string.must_match /^caution$/
+        stderr.string.must_match(/^caution$/)
       end
     end
 
@@ -178,7 +178,7 @@ describe Emeril::Publisher do
       it "calls super if logger is nil" do
         ui_without_logger.fatal("die")
 
-        stderr.string.must_match /die$/
+        stderr.string.must_match(/die$/)
       end
     end
 
