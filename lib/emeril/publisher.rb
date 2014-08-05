@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 
-require 'chef/cookbook_uploader'
-require 'chef/cookbook_loader'
-require 'chef/cookbook_site_streaming_uploader'
-require 'chef/knife/cookbook_site_share'
-require 'chef/knife/core/ui'
-require 'fileutils'
-require 'tmpdir'
+require "chef/cookbook_uploader"
+require "chef/cookbook_loader"
+require "chef/cookbook_site_streaming_uploader"
+require "chef/knife/cookbook_site_share"
+require "chef/knife/core/ui"
+require "fileutils"
+require "tmpdir"
 
-require 'emeril/logging'
+require "emeril/logging"
 
 module Emeril
 
@@ -80,7 +80,7 @@ module Emeril
         files libraries providers recipes resources templates
       ]
 
-      Dir.glob("#{source_path}/{#{entries.join(',')}}")
+      Dir.glob("#{source_path}/{#{entries.join(",")}}")
     end
 
     def logging_ui(ui)

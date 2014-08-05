@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-require 'emeril/category'
-require 'emeril/git_tagger'
-require 'emeril/metadata_chopper'
-require 'emeril/publisher'
+require "emeril/category"
+require "emeril/git_tagger"
+require "emeril/metadata_chopper"
+require "emeril/publisher"
 
 module Emeril
 

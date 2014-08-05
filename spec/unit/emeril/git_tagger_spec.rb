@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-require_relative '../../spec_helper'
-require 'tmpdir'
-require 'logger'
+require_relative "../../spec_helper"
+require "tmpdir"
+require "logger"
 
-require 'emeril/git_tagger'
+require "emeril/git_tagger"
 
 describe Emeril::GitTagger do
 

@@ -2,7 +2,7 @@
 
 require "English"
 
-require 'emeril/logging'
+require "emeril/logging"
 
 module Emeril
 
@@ -63,7 +63,7 @@ module Emeril
     attr_reader :logger, :source_path, :tag_prefix, :version
 
     def already_tagged?
-      if sh_with_code('git tag')[0].split(/\n/).include?(version_tag)
+      if sh_with_code("git tag")[0].split(/\n/).include?(version_tag)
         info("Tag #{version_tag} has already been created.")
         true
       end
@@ -75,7 +75,7 @@ module Emeril
 
     def git_push
       perform_git_push
-      perform_git_push ' --tags'
+      perform_git_push " --tags"
       info("Pushed git commits and tags.")
     end
 
@@ -86,7 +86,7 @@ module Emeril
       end
     end
 
-    def perform_git_push(options = '')
+    def perform_git_push(options = "")
       cmd = "git push origin master #{options}"
       out, code = sh_with_code(cmd)
       if code != 0
@@ -98,7 +98,7 @@ module Emeril
 
     def sh_with_code(cmd, &block)
       cmd << " 2>&1"
-      outbuf = ''
+      outbuf = ""
       debug(cmd)
       Dir.chdir(source_path) {
         outbuf = `#{cmd}`

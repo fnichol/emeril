@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-require 'thor'
-require 'chef/knife'
+require "thor"
+require "chef/knife"
 
-require 'emeril'
+require "emeril"
 
 module Emeril
 

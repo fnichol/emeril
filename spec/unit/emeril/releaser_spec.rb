@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-require_relative '../../spec_helper'
+require_relative "../../spec_helper"
 
-require 'emeril/releaser'
+require "emeril/releaser"
 
 describe Emeril::Releaser do
 
@@ -150,8 +150,9 @@ describe Emeril::Releaser do
       releaser.run
     end
 
-    describe 'when disabling community site publishing' do
-      it 'does not call #run on publisher' do
+    describe "when disabling community site publishing" do
+
+      it "does not call #run on publisher" do
         releaser = Emeril::Releaser.new(
           :metadata => metadata,
           :category => category,

@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-require_relative '../spec_helper'
-require 'vcr'
+require_relative "../spec_helper"
+require "vcr"
 
-require 'chef/knife'
-require 'emeril'
+require "chef/knife"
+require "emeril"
 
 VCR.configure do |config|
   config.ignore_hosts "codeclimate.com"
@@ -59,7 +59,7 @@ describe "Releasing and publishing a cookbook" do
   it "releases a new cookbook" do
     make_cookbook!(:version => "1.2.3")
 
-    VCR.use_cassette('new_release') do
+    VCR.use_cassette("new_release") do
       Emeril::Releaser.new(:logger => logger, :source_path => cookbook_path).run
     end
 

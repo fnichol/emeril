@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-require 'rake/tasklib'
-require 'chef/knife'
+require "rake/tasklib"
+require "chef/knife"
 
-require 'emeril'
+require "emeril"
 
 module Emeril
 

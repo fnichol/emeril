@@ -1,16 +1,16 @@
-require 'bundler/gem_tasks'
-require 'rake/testtask'
-require 'cane/rake_task'
+require "bundler/gem_tasks"
+require "rake/testtask"
+require "cane/rake_task"
 
 Rake::TestTask.new(:unit) do |t|
   t.libs.push "lib"
-  t.test_files = FileList['spec/unit/**/*_spec.rb']
+  t.test_files = FileList["spec/unit/**/*_spec.rb"]
   t.verbose = true
 end
 
 Rake::TestTask.new(:integration) do |t|
   t.libs.push "lib"
-  t.test_files = FileList['spec/integration/**/*_spec.rb']
+  t.test_files = FileList["spec/integration/**/*_spec.rb"]
   t.verbose = true
 end
 
@@ -25,7 +25,7 @@ end
 
 desc "Run cane to check quality metrics"
 Cane::RakeTask.new do |cane|
-  cane.canefile = './.cane'
+  cane.canefile = "./.cane"
 end
 
 desc "Display LOC stats"

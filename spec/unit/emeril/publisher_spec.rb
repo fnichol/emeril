@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
 
-require_relative '../../spec_helper'
-require 'chef/knife'
-require 'chef/config'
+require_relative "../../spec_helper"
+require "chef/knife"
+require "chef/config"
 
-require 'emeril/publisher'
+require "emeril/publisher"
 
+# Dummy Knife plugin
 class DummyKnife < Emeril::Publisher::SharePlugin
 
   def run; end
@@ -17,7 +18,7 @@ describe Emeril::Publisher do
   let(:category)      { "Utilities" }
 
   let(:publisher) do
-    if ENV['DEBUG']
+    if ENV["DEBUG"]
       logger = Logger.new(STDOUT)
       logger.level = Logger::DEBUG
     else
@@ -199,7 +200,7 @@ describe Emeril::Publisher do
     FileUtils.mkdir_p("#{cookbook_path}/recipes")
 
     File.open("#{cookbook_path}/metadata.rb", "wb") do |f|
-      f.write <<-METADATA_RB.gsub(/^ {8}/, '')
+      f.write <<-METADATA_RB.gsub(/^ {8}/, "")
         name             "#{name}"
         maintainer       "Michael Bluth"
         maintainer_email "michael@bluth.com"
@@ -210,7 +211,7 @@ describe Emeril::Publisher do
       METADATA_RB
     end
     File.open("#{cookbook_path}/recipes/default.rb", "wb") do |f|
-      f.write <<-DEFAULT_RB.gsub(/^ {8}/, '')
+      f.write <<-DEFAULT_RB.gsub(/^ {8}/, "")
         directory "/tmp/yeah"
 
         package "bash"

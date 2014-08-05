@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
-require 'net/http'
-require 'json'
+require "net/http"
+require "json"
 
 module Emeril
 
@@ -20,7 +20,7 @@ module Emeril
     def self.for_cookbook(cookbook)
       path = "/api/v1/cookbooks/#{cookbook}"
       response = Net::HTTP.get_response("cookbooks.opscode.com", path)
-      JSON.parse(response.body)['category']
+      JSON.parse(response.body)["category"]
     end
   end
 end
