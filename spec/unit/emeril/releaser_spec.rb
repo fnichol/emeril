@@ -16,7 +16,7 @@ describe Emeril::Releaser do
 
   before do
     @saved = Hash.new
-    %w{node_name client_key}.map(&:to_sym).each do |attr|
+    %w[node_name client_key].map(&:to_sym).each do |attr|
       @saved[attr] = Chef::Config[attr]
     end
 
@@ -25,7 +25,7 @@ describe Emeril::Releaser do
   end
 
   after do
-    %w{node_name client_key}.map(&:to_sym).each do |attr|
+    %w[node_name client_key].map(&:to_sym).each do |attr|
       Chef::Config[attr] = @saved.delete(attr)
     end
   end

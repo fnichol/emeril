@@ -23,7 +23,7 @@ module Emeril
     #
     def initialize(metadata_file)
       instance_eval(IO.read(metadata_file), metadata_file)
-      %w{name version}.map(&:to_sym).each do |attr|
+      %w[name version].map(&:to_sym).each do |attr|
         next unless self[attr].nil?
 
         raise MetadataParseError,
