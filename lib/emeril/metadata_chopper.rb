@@ -31,7 +31,7 @@ module Emeril
       end
     end
 
-    def method_missing(meth, *args, &block)
+    def method_missing(meth, *args, &_block)
       self[meth] = args.first
     end
   end
