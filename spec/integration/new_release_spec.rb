@@ -57,14 +57,14 @@ describe "Releasing and publishing a cookbook" do
   end
 
   it "releases a new cookbook" do
-    make_cookbook!(version: "1.2.3")
+    make_cookbook!(:version => "1.2.3")
 
     VCR.use_cassette('new_release') do
-      Emeril::Releaser.new(logger: logger, source_path: cookbook_path).run
+      Emeril::Releaser.new(:logger => logger, :source_path => cookbook_path).run
     end
 
     # tag was pushed to the remote
-    git_tag = run_cmd("git tag", in: "#{File.dirname(cookbook_path)}/remote")
+    git_tag = run_cmd("git tag", :in => "#{File.dirname(cookbook_path)}/remote")
     git_tag.chomp.must_equal "v1.2.3"
   end
 end
