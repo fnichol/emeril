@@ -268,6 +268,16 @@ combine the version bump and changelog items in <a href="https://github.com/fnic
 last Git commit which is presumably your <em>version-bump-and-changelog</em>
 commit.</li>
 <li>
+<strong>"What about adding support for X, Y, or Z?"</strong> That's possible, but Emeril
+has one primary focus: releasing your cookbook in an atomic and declarative
+fashion. We can get the job done with a small amount of code--less than 400
+LOC. There are other tools that are more wholistic and workflow oriented
+and you are encouraged to check them out (noted below).</li>
+<li>
+<strong>"That Chef dependency looks bulky, yo."</strong> Hmm, that's not a question. Do
+you you Knife? Congratulations, you have the Chef gem already! Are you using
+the ChefDK package? You are good to go!</li>
+<li>
 <strong>"How do I change the category for my cookbook?"</strong> Emeril will maintain
 the category used on the Supermarket site across releases. By default, new
 cookbooks will be put in the <code>"Other"</code> category. Otherwise, check out
@@ -292,6 +302,10 @@ by <a href="https://github.com/miketheman">Mike Fiedler</a>.</li>
 <a href="http://docs.opscode.com/knife_cookbook_site.html#share">knife community site share</a> - with some extra/manual git
 tagging, correct directory structure, and workflow. Ships with the
 <a href="https://github.com/opscode/chef">Chef gem</a>.</li>
+<li>
+<a href="http://sethvargo.github.io/stove/">Stove</a> - a more workflow oriented with JIRA and GitHub
+support, version bumping, and more by
+<a href="https://github.com/sethvargo">Seth Vargo</a>.</li>
 </ul><h2>
 <a name="-development" class="anchor" href="#-development"><span class="octicon octicon-link"></span></a>
 <a name="development"></a> Development</h2>
