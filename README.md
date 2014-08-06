@@ -227,6 +227,14 @@ Emeril::Releaser.new(logger: Chef::Log).run
   [commit][ex3]. Emeril will tag and release your cookbook based on the
   last Git commit which is presumably your *version-bump-and-changelog*
   commit.
+* **"What about adding support for X, Y, or Z?"** That's possible, but Emeril
+  has one primary focus: releasing your cookbook in an atomic and declarative
+  fashion. We can get the job done with a small amount of code--less than 400
+  LOC. There are other tools that are more wholistic and workflow oriented
+  and you are encouraged to check them out (noted below).
+* **"That Chef dependency looks bulky, yo."** Hmm, that's not a question. Do
+  you you Knife? Congratulations, you have the Chef gem already! Are you using
+  the ChefDK package? You are good to go!
 * **"How do I change the category for my cookbook?"** Emeril will maintain
   the category used on the Supermarket site across releases. By default, new
   cookbooks will be put in the `"Other"` category. Otherwise, check out
