@@ -254,6 +254,9 @@ Emeril::Releaser.new(logger: Chef::Log).run
 * [knife community site share][knife_share] - with some extra/manual git
   tagging, correct directory structure, and workflow. Ships with the
   [Chef gem][chef_gem].
+* [Stove][stove] - a more workflow oriented with JIRA and GitHub
+  support, version bumping, and more by
+  [Seth Vargo](https://github.com/sethvargo).
 
 ## <a name="development"></a> Development
 
@@ -299,3 +302,4 @@ MIT (see [LICENSE.txt][license])
 [knife_share]:      http://docs.opscode.com/knife_cookbook_site.html#share
 [publisher_class]:  https://github.com/fnichol/emeril/blob/master/lib/emeril/publisher.rb
 [semver_site]:      http://semver.org/
+[stove]:            http://sethvargo.github.io/stove/
