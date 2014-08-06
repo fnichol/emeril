@@ -110,6 +110,17 @@ describe Emeril::Releaser do
       )
     end
 
+    it "does not call Publisher when disabling supermarket publishing" do
+      Emeril::Publisher.expects(:new).never
+
+      Emeril::Releaser.new(
+        :source_path => source_path,
+        :metadata => metadata,
+        :category => category,
+        :publish_to_supermarket => false
+      )
+    end
+
     it "disables the git version tag prefix" do
       Emeril::GitTagger.expects(:new).with do |opts|
         opts[:tag_prefix] == false
@@ -148,6 +159,24 @@ describe Emeril::Releaser do
       publisher.expects(:run)
 
       releaser.run
+    end
+
+    describe "when disabling supermarket site publishing" do
+
+      it "does not call #run on publisher" do
+        releaser = Emeril::Releaser.new(
+          :metadata => metadata,
+          :category => category,
+          :git_tagger => git_tagger,
+          :publisher => publisher,
+          :publish_to_supermarket => false
+        )
+        publisher.unstub(:run)
+        publisher.expects(:run).never
+
+        releaser.run
+      end
+
     end
 
     describe "when disabling community site publishing" do

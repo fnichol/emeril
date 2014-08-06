@@ -25,7 +25,10 @@ module Emeril
     # @option options [GitTagger] git_tagger a git tagger
     # @option options [Publisher] publisher a publisher
     # @option options [Boolean] publish_to_community a boolean which
-    #   controls if the cookbook will published on the Community Site (the
+    #   controls if the cookbook will published on the Community Site, now
+    #   the Supermarket site (the default is to publish)
+    # @option options [Boolean] publish_to_supermarket a boolean which
+    #   controls if the cookbook will published on the Supermarket site (the
     #   default is to publish)
     # @raise [ArgumentError] if any required options are not set
     #
@@ -36,15 +39,18 @@ module Emeril
       @metadata = options.fetch(:metadata) { default_metadata }
       @category = options.fetch(:category) { default_category }
       @git_tagger = options.fetch(:git_tagger) { default_git_tagger }
-      @publish_to_community = options.fetch(:publish_to_community) { true }
-      setup_publisher(options.fetch(:publisher, nil)) if publish_to_community
+      @publish_to_supermarket = options.fetch(
+        :publish_to_supermarket,
+        options.fetch(:publish_to_community, true)
+      )
+      setup_publisher(options.fetch(:publisher, nil))
     end
 
     # Tags and releases a cookbook.
     #
     def run
       git_tagger.run
-      publisher.run if publish_to_community
+      publisher.run if publish_to_supermarket
     end
 
     private
@@ -52,7 +58,7 @@ module Emeril
     DEFAULT_CATEGORY = "Other".freeze
 
     attr_reader :logger, :tag_prefix, :source_path, :metadata,
-      :category, :git_tagger, :publisher, :publish_to_community
+      :category, :git_tagger, :publisher, :publish_to_supermarket
 
     def default_metadata
       metadata_file = File.expand_path(File.join(source_path, "metadata.rb"))
@@ -78,6 +84,8 @@ module Emeril
     end
 
     def setup_publisher(publisher)
+      return unless publish_to_supermarket
+
       @publisher = publisher || default_publisher
     end
 

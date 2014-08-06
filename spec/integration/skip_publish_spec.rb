@@ -32,9 +32,9 @@ describe "Releasing and but not publishing a cookbook" do
 
     VCR.use_cassette("new_release") do
       Emeril::Releaser.new(
-        :logger               => logger,
-        :source_path          => cookbook_path,
-        :publish_to_community => false
+        :logger                 => logger,
+        :source_path            => cookbook_path,
+        :publish_to_supermarket => false
       ).run
     end
 
@@ -48,10 +48,10 @@ describe "Releasing and but not publishing a cookbook" do
 
     VCR.use_cassette("new_release") do
       Emeril::Releaser.new(
-        :logger               => logger,
-        :source_path          => cookbook_path,
-        :publish_to_community => false,
-        :tag_prefix           => "release-"
+        :logger                 => logger,
+        :source_path            => cookbook_path,
+        :publish_to_supermarket => false,
+        :tag_prefix             => "release-"
       ).run
     end
 

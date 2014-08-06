@@ -2,13 +2,15 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cookbooks.opscode.com/api/v1/cookbooks/emeril
+    uri: https://supermarket.getchef.com/api/v1/cookbooks/emeril
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
       X-Ops-Userid: opsycodesy
@@ -17,109 +19,127 @@ http_interactions:
       code: 404
       message: Not Found
     headers:
-      Server:
-      - ngx_openresty
-      Date:
-      - Tue, 27 Aug 2013 04:18:43 GMT
-      Content-Type:
-      - text/html; charset=utf-8
-      Content-Length:
-      - '71'
-      Connection:
-      - keep-alive
-      Status:
-      - 404 Not Found
       Cache-Control:
       - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 06 Aug 2014 03:34:52 GMT
+      Server:
+      - nginx/1.4.6 (Ubuntu)
+      Status:
+      - 404 Not Found
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 7b4035bc-1d9c-4f57-9d18-118c9355a989
+      X-Runtime:
+      - '0.008624'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '87'
+      Connection:
+      - keep-alive
     body:
-      encoding: US-ASCII
-      string: ! '{"error_messages":["Resource does not exist"],"error_code":"NOT_FOUND"}'
+      encoding: UTF-8
+      string: '{"error_messages":["Resource does not exist."],"error_code":"NOT_FOUND"}'
     http_version: 
-  recorded_at: Tue, 27 Aug 2013 04:18:43 GMT
+  recorded_at: Wed, 06 Aug 2014 03:34:53 GMT
 - request:
     method: post
     uri: http://cookbooks.opscode.com/api/v1/cookbooks
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        LS0tLS0tUnVieU11bHRpcGFydENsaWVudDY5NDgxNlpaWlpaDQpDb250ZW50
+        LS0tLS0tUnVieU11bHRpcGFydENsaWVudDI5MDYwMVpaWlpaDQpDb250ZW50
         LURpc3Bvc2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9InRhcmJhbGwiOyBmaWxl
         bmFtZT0iZW1lcmlsLnRneiINCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24v
-        b2N0ZXQtc3RyZWFtDQoNCh+LCACjKBxSAAPtl1FvmzAQx/PMp/DY60SAAJH2
-        tE7tY1+mvVcGDvAGNrJNp2rqd58pjkbcRlE1yFT1flLk4DvZZx//w4YOJGu3
-        mzUJw3CfpuSpzabWcGinhyiOw30YJ3GyI2G0i8L9hqSrRmUZlKbShFJxVjSi
-        Pen3qwE4bd04iyKLx7kSMOW/A01LqmnwQwm+9BxmP7IkOZ1/k3cn/2maRRsS
-        Lh3IS7zz/P/2CPE57cD/TPzpZfA/jX0lqEKyXjPBR9O1YLwmSg9V9WFyaAWv
-        7856dZRxbX4gR/ut2WMKLfnaDrpxHe7A/G9Ht25y+5KPbkEhOjsjK4Crp0iv
-        elo0QOIgnEx9S3UlZKeMcVzSo11DD7wEXjA4Nkgwg3bGRsfIj21qqGtQz/sL
-        wSsTgTYrPOrvpbhnpdsrwYRUuL1Ua8nyQTvh1FIMvfF9FiTrHc97kMrudRJE
-        QeR7j/+Wf1f/Ml/mvZpzTv+7eO/qP44y1P8lGKVP5hyKgPdXmAfLsXo9V7kv
-        6dazmp2NP5OuNysf1npUQTy3xrh2K4fZ6FYV/3tb3wxW/99urq5vb4KuXGOO
-        c/o3BcDRf7LD7/9l+Ei+GzHmQJUmoiL68KBQQu8Cq3971ljnHvj6+1+SJhHe
-        /y6Bk/8SKjq0etlj4Nn6n2RO/rM0irH+X4KSmdRrIR+Iv9Vdv30Aao52njmj
-        /aQ1ED+nqsHjFIIgCIIgCIIgCIIgCIIgyNvjDyUZemYAKAAADQotLS0tLS1S
-        dWJ5TXVsdGlwYXJ0Q2xpZW50Njk0ODE2WlpaWloNCkNvbnRlbnQtRGlzcG9z
-        aXRpb246IGZvcm0tZGF0YTsgbmFtZT0iY29va2Jvb2siDQoNCnsiY2F0ZWdv
-        cnkiOiJPdGhlciJ9DQotLS0tLS1SdWJ5TXVsdGlwYXJ0Q2xpZW50Njk0ODE2
-        WlpaWlotLQ0K
+        b2N0ZXQtc3RyZWFtDQoNCh+LCABdouFTAAPtl01vnDAQhvfMr3DptWL53JV6
+        aqrkmEvVe2RgALdgI9ukiqr895rgVVknq1VU2CrKPNLKi2dkjz28gw0dSNZu
+        N2sShuE+y8hTu5taw6GdHqI42YdJHEVJRsIoiaJwQ7JVo7IMSlNpQqk4KxrR
+        nvT71QCctm6cRZHF41wJmPLfgaYl1TT4oQRfeg6zH7s0PZ3/fRg7+c+yXbwh
+        4dKBvMQ7z/9vjxCf0w78z8SfXgb/09hXgiok6zUTfDRdC8ZrovRQVR8mh1bw
+        +u6sV0cZ1+YHcrTfmj2m0JKv7aAb1+EOzP92dOsmty/56BYUorMzsgK4eor0
+        qqdFAyQOwsnUt1RXQnbKGMclPdo19MBL4AWDY4MEM2hnbHSM/NimhroG9by/
+        ELwyEWizwqP+Xop7Vrq9EkxIhdtLtZYsH7QTTi3F0BvfZ0Gy3vG8B6nsXkdB
+        HCS+9/hv+Xf1L/Nl3qs55/SfxHtX/3G0R/1fglH6ZM6hCHh/hXmwHKvXc5X7
+        km49q9nZ+DPperPyYa1HFcRza4xrt3KYjW5V8b+39c1g9f/t5ur69iboyjXm
+        OKd/o3tH/2mC3//L8JF8N2LMgSpNREX04UGhhN4FVv/2rLHOPfD19780S2O8
+        /10CJ/8lVHRo9bLHwLP1P905+d9lUYL1/xKUzKReC/lA/K3u+u0DUHO088wZ
+        7Setgfg5VQ0epxAEQRAEQRAEQRAEQRAEQd4efwDZZB0aACgAAA0KLS0tLS0t
+        UnVieU11bHRpcGFydENsaWVudDI5MDYwMVpaWlpaDQpDb250ZW50LURpc3Bv
+        c2l0aW9uOiBmb3JtLWRhdGE7IG5hbWU9ImNvb2tib29rIg0KDQp7ImNhdGVn
+        b3J5IjoiT3RoZXIifQ0KLS0tLS0tUnVieU11bHRpcGFydENsaWVudDI5MDYw
+        MVpaWlpaLS0NCg==
     headers:
       Accept:
       - application/json
       X-Chef-Version:
-      - 11.4.4
+      - 11.14.2
       X-Ops-Sign:
       - algorithm=sha1;version=1.0;
       X-Ops-Userid: opsycodesy
       X-Ops-Timestamp:
-      - '2013-08-27T04:18:43Z'
+      - '2014-08-06T03:34:53Z'
       X-Ops-Content-Hash:
-      - ! '{{X-Ops-Content-Hash}}'
+      - "{{X-Ops-Content-Hash}}"
       X-Ops-Authorization-1:
-      - ! '{{X-Ops-Authorization-1}}'
+      - "{{X-Ops-Authorization-1}}"
       X-Ops-Authorization-2:
-      - ! '{{X-Ops-Authorization-2}}'
+      - "{{X-Ops-Authorization-2}}"
       X-Ops-Authorization-3:
-      - ! '{{X-Ops-Authorization-3}}'
+      - "{{X-Ops-Authorization-3}}"
       X-Ops-Authorization-4:
-      - ! '{{X-Ops-Authorization-4}}'
+      - "{{X-Ops-Authorization-4}}"
       X-Ops-Authorization-5:
-      - ! '{{X-Ops-Authorization-5}}'
+      - "{{X-Ops-Authorization-5}}"
       X-Ops-Authorization-6:
-      - ! '{{X-Ops-Authorization-6}}'
+      - "{{X-Ops-Authorization-6}}"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       User-Agent:
       - Ruby
       Content-Length:
-      - '864'
+      - '865'
       Content-Type:
-      - multipart/form-data; boundary=----RubyMultipartClient694816ZZZZZ
+      - multipart/form-data; boundary=----RubyMultipartClient290601ZZZZZ
   response:
     status:
       code: 201
       message: Created
     headers:
-      Server:
-      - ngx_openresty
-      Date:
-      - Tue, 27 Aug 2013 04:18:45 GMT
+      Cache-Control:
+      - max-age=0, private, must-revalidate
       Content-Type:
       - application/json; charset=utf-8
-      Content-Length:
-      - '55'
-      Connection:
-      - keep-alive
+      Date:
+      - Wed, 06 Aug 2014 03:34:54 GMT
+      Etag:
+      - '"dbad37ee990b7101238a0af7c528570f"'
+      Server:
+      - nginx/1.4.6 (Ubuntu)
       Status:
       - 201 Created
-      Location:
-      - http://cookbooks.opscode.com/cookbooks/emeril
-      Cache-Control:
-      - no-cache
-      Set-Cookie:
-      - logged-in-username=fnichol; domain=.opscode.com; path=/
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - febccd46-222b-492b-b050-63e6b690051b
       X-Runtime:
-      - '2344'
+      - '1.100020'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '62'
+      Connection:
+      - keep-alive
     body:
-      encoding: US-ASCII
-      string: ! '{"uri":"http://cookbooks.opscode.com/cookbooks/emeril"}'
+      encoding: UTF-8
+      string: '{"uri":"http://cookbooks.opscode.com/api/v1/cookbooks/emeril"}'
     http_version: 
-  recorded_at: Tue, 27 Aug 2013 04:18:45 GMT
-recorded_with: VCR 2.5.0
+  recorded_at: Wed, 06 Aug 2014 03:34:54 GMT
+recorded_with: VCR 2.9.2
