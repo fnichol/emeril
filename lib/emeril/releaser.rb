@@ -39,10 +39,11 @@ module Emeril
       @metadata = options.fetch(:metadata) { default_metadata }
       @category = options.fetch(:category) { default_category }
       @git_tagger = options.fetch(:git_tagger) { default_git_tagger }
-      @publish_to_supermarket = options.fetch(:publish_to_supermarket) do
+      @publish_to_supermarket = options.fetch(
+        :publish_to_supermarket,
         options.fetch(:publish_to_community, true)
-      end
-      setup_publisher(options.fetch(:publisher, nil)) if publish_to_supermarket
+      )
+      setup_publisher(options.fetch(:publisher, nil))
     end
 
     # Tags and releases a cookbook.
@@ -83,6 +84,8 @@ module Emeril
     end
 
     def setup_publisher(publisher)
+      return unless publish_to_supermarket
+
       @publisher = publisher || default_publisher
     end
 
