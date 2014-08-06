@@ -2,13 +2,15 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cookbooks.opscode.com/api/v1/cookbooks/mysql
+    uri: https://supermarket.getchef.com/api/v1/cookbooks/mysql
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - ! '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -16,31 +18,34 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Server:
-      - ngx_openresty
-      Date:
-      - Sun, 19 May 2013 03:02:46 GMT
+      Cache-Control:
+      - max-age=0, private, must-revalidate
       Content-Type:
       - application/json; charset=utf-8
-      Content-Length:
-      - '2808'
-      Connection:
-      - keep-alive
+      Date:
+      - Wed, 06 Aug 2014 03:19:55 GMT
+      Server:
+      - nginx/1.4.6 (Ubuntu)
       Status:
       - 200 OK
-      Set-Cookie:
-      - _sandbox_session=eyJsb2NhdGlvbiI6eyJpZCI6Im15c3FsIiwiY29udHJvbGxlciI6ImFwaS92MS9jb29rYm9va3MiLCJhY3Rpb24iOiJzaG93In0sInNlc3Npb25faWQiOiI3NTY3ZjExMjRlMDI5NWIyNGQ5NDY2ZDNiOGRmZmNiOCJ9--80263530e5c554f2052ce6f25b2dbeb8136a8a6a;
-        domain=.opscode.com; path=/; HttpOnly
-      - logged-in-username=; domain=.opscode.com; path=/
-      Etag:
-      - ! '"1379d0fdf0632ffd7d4488ae01199dd3"'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 3da4e444-bf0b-4c82-82b8-4ba72edc92fc
       X-Runtime:
-      - '25'
-      Cache-Control:
-      - private, max-age=0, must-revalidate
+      - '0.089663'
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
     body:
-      encoding: US-ASCII
-      string: ! '{"description":"Installs and configures mysql for client or server","created_at":"2009-10-28T19:16:54Z","average_rating":4.33333,"versions":["http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/3_0_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/2_1_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/2_1_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/2_0_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/2_0_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_3_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_2_6","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_2_4","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_2_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_2_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_8","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_7","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_6","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_5","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_4","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_3","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/1_0_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_4","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_3","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_24_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_23_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_23_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_22_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_5","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_3","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_2","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_1","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_21_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_20_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_15_0","http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/0_10_0"],"latest_version":"http://cookbooks.opscode.com/api/v1/cookbooks/mysql/versions/3_0_0","updated_at":"2013-04-12T22:58:50Z","category":"Databases","external_url":"github.com/opscode-cookbooks/mysql","maintainer":"opscode","name":"mysql"}'
+      encoding: UTF-8
+      string: '{"name":"mysql","maintainer":"chef","description":"Provides mysql_service
+        and mysql_client resources","category":"Databases","latest_version":"https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.3.6","external_url":"http://github.com/opscode-cookbooks/mysql","average_rating":null,"created_at":"2009-10-28T19:16:54.000Z","updated_at":"2014-07-30T19:31:16.550Z","deprecated":false,"versions":["https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.3.6","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.3.4","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.3.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.3.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.2.12","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.2.10","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.2.8","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.2.6","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.2.4","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.2.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.2.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.1.12","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.1.10","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.1.8","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.1.6","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.1.4","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.1.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.1.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.0.6","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.0.4","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.0.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/5.0.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.1.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.1.1","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.1.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.20","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.18","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.14","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.12","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.10","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.8","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.6","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.4","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/4.0.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/3.0.12","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/3.0.10","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/3.0.8","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/3.0.6","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/3.0.4","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/3.0.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/3.0.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/2.1.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/2.1.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/2.0.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/2.0.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.3.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.2.6","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.2.4","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.2.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.2.1","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.0.8","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.0.7","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.0.6","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.0.5","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.0.4","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.0.3","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.0.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.0.1","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/1.0.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.24.4","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.24.3","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.24.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.24.1","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.24.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.23.1","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.23.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.22.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.21.5","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.21.3","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.21.2","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.21.1","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.21.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.20.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.15.0","https://supermarket.getchef.com/api/v1/cookbooks/mysql/versions/0.10.0"],"metrics":{"downloads":{"total":9943859,"versions":{"5.1.2":131969,"1.2.2":132871,"1.0.2":132219,"5.1.10":131934,"1.2.4":132995,"5.1.12":132174,"3.0.2":125750,"3.0.6":124298,"5.0.6":132027,"0.21.3":132338,"5.1.0":131961,"4.1.2":128578,"4.1.0":131934,"5.0.0":131976,"0.21.0":132198,"5.2.4":132003,"5.1.4":131930,"5.2.2":127213,"5.3.0":129413,"2.0.0":132174,"3.0.4":117738,"0.24.3":132205,"1.0.0":132197,"5.3.2":131930,"5.0.2":132034,"3.0.10":132030,"2.0.2":132378,"0.22.0":132190,"0.23.1":132746,"0.20.0":132219,"0.23.0":132243,"1.0.3":132307,"0.21.5":132227,"0.21.2":132318,"4.0.8":131965,"5.2.12":124992,"4.0.18":132117,"5.3.6":130186,"4.0.20":125341,"5.2.10":129444,"3.0.12":121770,"0.24.1":132406,"4.0.6":127469,"0.10.0":132463,"0.15.0":132433,"1.0.5":132178,"0.21.1":132211,"5.2.6":129478,"5.2.8":131932,"5.3.4":129364,"5.1.6":131941,"5.2.0":131983,"1.3.0":127805,"4.1.1":132296,"3.0.8":131984,"5.0.4":131944,"4.0.10":132097,"5.1.8":132067,"4.0.14":132112,"4.0.2":131988,"4.0.4":132321,"4.0.12":131945,"4.0.0":132003,"1.0.8":132332,"3.0.0":117127,"2.1.0":132645,"1.2.1":132334,"0.24.2":132207,"0.24.4":132588,"2.1.2":127954,"1.2.6":132714,"1.0.4":132210,"1.0.7":132204,"1.0.1":132206,"1.0.6":132172,"0.24.0":132214}},"followers":411}}'
     http_version: 
-  recorded_at: Sun, 19 May 2013 03:02:49 GMT
-recorded_with: VCR 2.5.0
+  recorded_at: Wed, 06 Aug 2014 03:19:55 GMT
+recorded_with: VCR 2.9.2

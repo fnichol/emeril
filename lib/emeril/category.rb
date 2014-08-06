@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-require "net/http"
+require "net/https"
 require "json"
+require "uri"
 
 module Emeril
 
@@ -18,8 +19,11 @@ module Emeril
     #   on the Community site
     #
     def self.for_cookbook(cookbook)
-      path = "/api/v1/cookbooks/#{cookbook}"
-      response = Net::HTTP.get_response("cookbooks.opscode.com", path)
+      uri = URI("https://supermarket.getchef.com/api/v1/cookbooks/#{cookbook}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
       JSON.parse(response.body)["category"]
     end
   end
