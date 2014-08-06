@@ -27,7 +27,7 @@ Need more details? Read on&hellip;
 ## <a name="screencast"></a> Screencast
 
 Here is a short screencast demonstating how Emeril can be used to release
-a cookbook to the Community Site.
+a cookbook to the Supermarket site.
 
 [![Emeril screencast](https://raw.github.com/fnichol/emeril/master/images/emeril-vid.png)](http://vimeo.com/fnichol/emeril)
 
@@ -38,7 +38,7 @@ Emeril has 2 primary tasks and goals:
 1. Tag a Git commit with a semantic version tag with the form `"v1.2.5"` (by
    default)
 2. Optionally publish a versioned release of the cookbook to the
-   [Community Site][community_site]
+   [Supermarket site][supermarket_site]
 
 The Git tagging is currently accomplished via shell out, so Git must be
 installed on your system.
@@ -95,9 +95,9 @@ file with some required attributes set.
 
 There are 2 configuration items you need:
 
-1. Your [Community Site][community_site] username, chosen at signup time.
-2. The file path to your [Community Site][community_site] user certificate.
-   When you sign up to the Community Site, the site will provide this key to
+1. Your [Supermarket site][supermarket_site] username, chosen at signup time.
+2. The file path to your [Supermarket site][supermarket_site] user certificate.
+   When you sign up to the Supermarket site, the site will provide this key to
    you as a `*.pem` file.
 
 The easiest way to get setup is to add both of these items to your default
@@ -140,14 +140,14 @@ Emeril::RakeTasks.new do |t|
 end
 ```
 
-If your cookbook is not on the Community Site, you can skip the publishing step
-with the block form:
+If your cookbook is not on the Supermarket site, you can skip the publishing
+step with the block form:
 
 ```ruby
 require 'emeril/rake_tasks'
 
 Emeril::RakeTasks.new do |t|
-  t.config[:publish_to_community] = false
+  t.config[:publish_to_supermarket] = false
 end
 ```
 
@@ -178,14 +178,14 @@ Emeril::ThorTasks.new do |t|
 end
 ```
 
-If your cookbook is not on the Community Site, you can skip the publishing step
-with the block form:
+If your cookbook is not on the Supermarket site, you can skip the publishing
+step with the block form:
 
 ```ruby
 require 'emeril/thor_tasks'
 
 Emeril::ThorTasks.new do |t|
-  t.config[:publish_to_community] = false
+  t.config[:publish_to_supermarket] = false
 end
 ```
 
@@ -203,7 +203,7 @@ same code as the default Rake and Thor tasks, use the following:
 require 'chef/knife'
 Chef::Knife.new.configure_chef
 
-# Perform the git tagging and share to the Community Site
+# Perform the git tagging and share to the Supermarket site
 require 'emeril'
 Emeril::Releaser.new(logger: Chef::Log).run
 ```
@@ -226,9 +226,8 @@ Emeril::Releaser.new(logger: Chef::Log).run
   last Git commit which is presumably your *version-bump-and-changelog*
   commit.
 * **"How do I change the category for my cookbook?"** Emeril will maintain
-  the category used on the Community Site across releases. By default, new
-  cookbooks will be put in the `"Other"` category. For now you can change
-  the category directly on the Community Site, done! Otherwise, check out
+  the category used on the Supermarket site across releases. By default, new
+  cookbooks will be put in the `"Other"` category. Otherwise, check out
   the [Rake](#usage-rake) and [Thor](#usage-thor) sections for further
   configuration help.
 * **"Why is Emeril complaining that I'm missing the name attribute in my
@@ -278,7 +277,7 @@ MIT (see [LICENSE.txt][license])
 [berkshelf_site]:   http://berkshelf.com/
 [changelog_wikipedia]: http://en.wikipedia.org/wiki/Changelog
 [chef_gem]:         https://github.com/opscode/chef
-[community_site]:   http://community.opscode.com/
+[supermarket_site]: https://supermarket.getchef.com/
 [ex1]:              https://github.com/fnichol/chef-ruby_build/commit/c940b5e9cd40eaba10d6285de6648f4d25fe959d
 [ex2]:              https://github.com/fnichol/chef-homesick/commit/80e558ff921f1c59698f6942214c0224a24392d7
 [ex3]:              https://github.com/fnichol/chef-openoffice/commit/bf84aba0690a6b155b499b06df953be19a3aead1
