@@ -31,18 +31,21 @@
         <p><a href="http://badge.fury.io/rb/emeril"><img src="https://badge.fury.io/rb/emeril.png" alt="Gem Version"></a>
 <a href="https://travis-ci.org/fnichol/emeril"><img src="https://travis-ci.org/fnichol/emeril.png?branch=master" alt="Build Status"></a>
 <a href="https://codeclimate.com/github/fnichol/emeril"><img src="https://codeclimate.com/github/fnichol/emeril.png" alt="Code Climate"></a>
-<a href="https://gemnasium.com/fnichol/emeril"><img src="https://gemnasium.com/fnichol/emeril.png" alt="Dependency Status"></a></p>
+<a href="https://codeclimate.com/github/fnichol/emeril"><img src="https://codeclimate.com/github/fnichol/emeril/badges/coverage.svg" alt="Test Coverage"></a>
+<a href="https://gemnasium.com/fnichol/emeril"><img src="https://gemnasium.com/fnichol/emeril.png" alt="Dependency Status"></a>
+<a href="http://inch-ci.org/github/fnichol/emeril"><img src="http://inch-ci.org/github/fnichol/emeril.png?branch=master" alt="Inline docs"></a></p>
 
 <p>Kick it up a notch! Emeril is a library that helps you release your Chef
 cookbooks from Rake, Thor, or a Ruby library. If <code>rake release</code> is all you
 are after, this should fit the bill.</p>
 
 <h2>
-<a name="-tldr" class="anchor" href="#-tldr"><span class="octicon octicon-link"></span></a><a name="tl-dr"></a> tl;dr</h2>
+<a name="-tldr" class="anchor" href="#-tldr"><span class="octicon octicon-link"></span></a>
+<a name="tl-dr"></a> tl;dr</h2>
 
 <p>How do you get started? Without much fanfare…</p>
 
-<div class="highlight"><pre><span class="nb">echo</span> <span class="s2">"gem 'emeril'"</span> &gt; Gemfile
+<div class="highlight highlight-sh"><pre><span class="nb">echo</span> <span class="s2">"gem 'emeril'"</span> &gt; Gemfile
 bundle install
 <span class="nb">echo</span> <span class="s2">"require 'emeril/rake'"</span> &gt; Rakefile
 bundle <span class="nb">exec </span>rake release
@@ -53,15 +56,17 @@ bundle <span class="nb">exec </span>rake release
 <p>Need more details? Read on…</p>
 
 <h2>
-<a name="-screencast" class="anchor" href="#-screencast"><span class="octicon octicon-link"></span></a><a name="screencast"></a> Screencast</h2>
+<a name="-screencast" class="anchor" href="#-screencast"><span class="octicon octicon-link"></span></a>
+<a name="screencast"></a> Screencast</h2>
 
 <p>Here is a short screencast demonstating how Emeril can be used to release
-a cookbook to the Community Site.</p>
+a cookbook to the Supermarket site.</p>
 
 <p><a href="http://vimeo.com/fnichol/emeril"><img src="https://raw.github.com/fnichol/emeril/master/images/emeril-vid.png" alt="Emeril screencast"></a></p>
 
 <h2>
-<a name="-how-it-works" class="anchor" href="#-how-it-works"><span class="octicon octicon-link"></span></a><a name="how-it-works"></a> How It Works</h2>
+<a name="-how-it-works" class="anchor" href="#-how-it-works"><span class="octicon octicon-link"></span></a>
+<a name="how-it-works"></a> How It Works</h2>
 
 <p>Emeril has 2 primary tasks and goals:</p>
 
@@ -69,7 +74,7 @@ a cookbook to the Community Site.</p>
 <li>Tag a Git commit with a semantic version tag with the form <code>"v1.2.5"</code> (by
 default)</li>
 <li>Optionally publish a versioned release of the cookbook to the
-<a href="http://community.opscode.com/">Community Site</a>
+<a href="https://supermarket.getchef.com/">Supermarket site</a>
 </li>
 </ol><p>The Git tagging is currently accomplished via shell out, so Git must be
 installed on your system.</p>
@@ -97,28 +102,31 @@ considered production cookbook files:</p>
 <a href="https://github.com/fnichol/emeril/issues">issue</a>.</p>
 
 <h2>
-<a name="-installation" class="anchor" href="#-installation"><span class="octicon octicon-link"></span></a><a name="installation"></a> Installation</h2>
+<a name="-installation" class="anchor" href="#-installation"><span class="octicon octicon-link"></span></a>
+<a name="installation"></a> Installation</h2>
 
 <p>Add this line to your application's Gemfile:</p>
 
-<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'emeril'</span>
+<div class="highlight highlight-ruby"><pre><span class="n">gem</span> <span class="s1">'emeril'</span>
 </pre></div>
 
 <p>And then execute:</p>
 
-<div class="highlight"><pre>bundle
+<div class="highlight highlight-sh"><pre>bundle
 </pre></div>
 
 <p>Or install it yourself as:</p>
 
-<div class="highlight"><pre>gem install emeril
+<div class="highlight highlight-sh"><pre>gem install emeril
 </pre></div>
 
 <h2>
-<a name="-usage" class="anchor" href="#-usage"><span class="octicon octicon-link"></span></a><a name="usage"></a> Usage</h2>
+<a name="-usage" class="anchor" href="#-usage"><span class="octicon octicon-link"></span></a>
+<a name="usage"></a> Usage</h2>
 
 <h3>
-<a name="-credentials-setup" class="anchor" href="#-credentials-setup"><span class="octicon octicon-link"></span></a><a name="usage-setup"></a> Credentials Setup</h3>
+<a name="-credentials-setup" class="anchor" href="#-credentials-setup"><span class="octicon octicon-link"></span></a>
+<a name="usage-setup"></a> Credentials Setup</h3>
 
 <p>Emeril currently uses the <a href="https://github.com/opscode/chef/blob/master/lib/chef/knife/cookbook_site_share.rb">CookbookSiteShare</a> to do most of the
 heavy lifting, so you will need a minimally configured <a href="http://docs.opscode.com/config_rb_knife.html">knife.rb</a>
@@ -127,16 +135,16 @@ file with some required attributes set.</p>
 <p>There are 2 configuration items you need:</p>
 
 <ol>
-<li>Your <a href="http://community.opscode.com/">Community Site</a> username, chosen at signup time.</li>
-<li>The file path to your <a href="http://community.opscode.com/">Community Site</a> user certificate.
-When you sign up to the Community Site, the site will provide this key to
+<li>Your <a href="https://supermarket.getchef.com/">Supermarket site</a> username, chosen at signup time.</li>
+<li>The file path to your <a href="https://supermarket.getchef.com/">Supermarket site</a> user certificate.
+When you sign up to the Supermarket site, the site will provide this key to
 you as a <code>*.pem</code> file.</li>
 </ol><p>The easiest way to get setup is to add both of these items to your default
 <code>knife.rb</code> file located at <code>$HOME/.chef/knife.rb</code>. If you are setting this
 file up for the first time, give this a go (substituting your username, and
 key location):</p>
 
-<div class="highlight"><pre>mkdir -p <span class="nv">$HOME</span>/.chef
+<div class="highlight highlight-sh"><pre>mkdir -p <span class="nv">$HOME</span>/.chef
 cat <span class="s">&lt;&lt;KNIFE_RB &gt; $HOME/.chef/knife.rb</span>
 <span class="s">node_name     "fnichol"</span>
 <span class="s">client_key    File.expand_path('~/.chef/fnichol.pem')</span>
@@ -144,20 +152,21 @@ cat <span class="s">&lt;&lt;KNIFE_RB &gt; $HOME/.chef/knife.rb</span>
 </pre></div>
 
 <h3>
-<a name="-rake-tasks" class="anchor" href="#-rake-tasks"><span class="octicon octicon-link"></span></a><a name="usage-rake"></a> Rake Tasks</h3>
+<a name="-rake-tasks" class="anchor" href="#-rake-tasks"><span class="octicon octicon-link"></span></a>
+<a name="usage-rake"></a> Rake Tasks</h3>
 
 <p>To add the default Rake task (<code>rake release</code>), add the following to your
 <code>Rakefile</code>:</p>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/rake'</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'emeril/rake'</span>
 </pre></div>
 
 <p>If you need to further customize the <code>Emeril::Releaser</code> object you can use
 the more explicit format with a block:</p>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/rake_tasks'</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'emeril/rake_tasks'</span>
 
-<span class="ss">Emeril</span><span class="p">:</span><span class="ss">:RakeTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+<span class="no">Emeril</span><span class="o">::</span><span class="no">RakeTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
   <span class="c1"># turn on debug logging</span>
   <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:logger</span><span class="o">].</span><span class="n">level</span> <span class="o">=</span> <span class="ss">:debug</span>
 
@@ -169,31 +178,32 @@ the more explicit format with a block:</p>
 <span class="k">end</span>
 </pre></div>
 
-<p>If your cookbook is not on the Community Site, you can skip the publishing step
-with the block form:</p>
+<p>If your cookbook is not on the Supermarket site, you can skip the publishing
+step with the block form:</p>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/rake_tasks'</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'emeril/rake_tasks'</span>
 
-<span class="ss">Emeril</span><span class="p">:</span><span class="ss">:RakeTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
-  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:publish_to_community</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span>
+<span class="no">Emeril</span><span class="o">::</span><span class="no">RakeTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:publish_to_supermarket</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span>
 <span class="k">end</span>
 </pre></div>
 
 <h3>
-<a name="-thor-tasks" class="anchor" href="#-thor-tasks"><span class="octicon octicon-link"></span></a><a name="usage-rake"></a> Thor Tasks</h3>
+<a name="-thor-tasks" class="anchor" href="#-thor-tasks"><span class="octicon octicon-link"></span></a>
+<a name="usage-rake"></a> Thor Tasks</h3>
 
 <p>To add the default Thor task (<code>thor emeril:release</code>), add the following to your
 <code>Thorfile</code>:</p>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/thor'</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'emeril/thor'</span>
 </pre></div>
 
 <p>If you need to further customize the <code>Emeril::Releaser</code> object you can use
 the more explicit format with a block:</p>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/thor_tasks'</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'emeril/thor_tasks'</span>
 
-<span class="ss">Emeril</span><span class="p">:</span><span class="ss">:ThorTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+<span class="no">Emeril</span><span class="o">::</span><span class="no">ThorTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
   <span class="c1"># turn on debug logging</span>
   <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:logger</span><span class="o">].</span><span class="n">level</span> <span class="o">=</span> <span class="ss">:debug</span>
 
@@ -205,18 +215,19 @@ the more explicit format with a block:</p>
 <span class="k">end</span>
 </pre></div>
 
-<p>If your cookbook is not on the Community Site, you can skip the publishing step
-with the block form:</p>
+<p>If your cookbook is not on the Supermarket site, you can skip the publishing
+step with the block form:</p>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'emeril/thor_tasks'</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'emeril/thor_tasks'</span>
 
-<span class="ss">Emeril</span><span class="p">:</span><span class="ss">:ThorTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
-  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:publish_to_community</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span>
+<span class="no">Emeril</span><span class="o">::</span><span class="no">ThorTasks</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="n">t</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="ss">:publish_to_supermarket</span><span class="o">]</span> <span class="o">=</span> <span class="kp">false</span>
 <span class="k">end</span>
 </pre></div>
 
 <h3>
-<a name="-ruby-library" class="anchor" href="#-ruby-library"><span class="octicon octicon-link"></span></a><a name="usage-ruby"></a> Ruby Library</h3>
+<a name="-ruby-library" class="anchor" href="#-ruby-library"><span class="octicon octicon-link"></span></a>
+<a name="usage-ruby"></a> Ruby Library</h3>
 
 <p>The Ruby API is fairly straight forward, but keep in mind that loading or
 populating <code>Chef::Config[:node_name]</code> and <code>Chef::Config[:client_key]</code> is
@@ -225,17 +236,18 @@ the responsibility of the caller, not Emeril.</p>
 <p>For example, to load configuration from <a href="http://docs.opscode.com/config_rb_knife.html">knife.rb</a> and invoke the
 same code as the default Rake and Thor tasks, use the following:</p>
 
-<div class="highlight"><pre><span class="c1"># Populate Chef::Config from knife.rb</span>
+<div class="highlight highlight-ruby"><pre><span class="c1"># Populate Chef::Config from knife.rb</span>
 <span class="nb">require</span> <span class="s1">'chef/knife'</span>
-<span class="ss">Chef</span><span class="p">:</span><span class="ss">:Knife</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">configure_chef</span>
+<span class="no">Chef</span><span class="o">::</span><span class="no">Knife</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">configure_chef</span>
 
-<span class="c1"># Perform the git tagging and share to the Community Site</span>
+<span class="c1"># Perform the git tagging and share to the Supermarket site</span>
 <span class="nb">require</span> <span class="s1">'emeril'</span>
-<span class="ss">Emeril</span><span class="p">:</span><span class="ss">:Releaser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">logger</span><span class="p">:</span> <span class="ss">Chef</span><span class="p">:</span><span class="ss">:Log</span><span class="p">)</span><span class="o">.</span><span class="n">run</span>
+<span class="no">Emeril</span><span class="o">::</span><span class="no">Releaser</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">logger</span><span class="p">:</span> <span class="no">Chef</span><span class="o">::</span><span class="no">Log</span><span class="p">)</span><span class="o">.</span><span class="n">run</span>
 </pre></div>
 
 <h2>
-<a name="-frequently-asked-questions" class="anchor" href="#-frequently-asked-questions"><span class="octicon octicon-link"></span></a><a name="faq"></a> Frequently Asked Questions</h2>
+<a name="-frequently-asked-questions" class="anchor" href="#-frequently-asked-questions"><span class="octicon octicon-link"></span></a>
+<a name="faq"></a> Frequently Asked Questions</h2>
 
 <ul>
 <li>
@@ -257,9 +269,8 @@ last Git commit which is presumably your <em>version-bump-and-changelog</em>
 commit.</li>
 <li>
 <strong>"How do I change the category for my cookbook?"</strong> Emeril will maintain
-the category used on the Community Site across releases. By default, new
-cookbooks will be put in the <code>"Other"</code> category. For now you can change
-the category directly on the Community Site, done! Otherwise, check out
+the category used on the Supermarket site across releases. By default, new
+cookbooks will be put in the <code>"Other"</code> category. Otherwise, check out
 the <a href="#usage-rake">Rake</a> and <a href="#usage-thor">Thor</a> sections for further
 configuration help.</li>
 <li>
@@ -270,7 +281,8 @@ the cookbook code. Modern tools such as <a href="http://berkshelf.com/">Berkshel
 this for dependency resolution and the <a href="http://acrmp.github.io/foodcritic/">Foodcritic</a>
 cookbook linting tool has rule <a href="http://acrmp.github.io/foodcritic/#FC045">FC045</a> to help catch this omission.</li>
 </ul><h2>
-<a name="-alternatives" class="anchor" href="#-alternatives"><span class="octicon octicon-link"></span></a><a name="alternatives"></a> Alternatives</h2>
+<a name="-alternatives" class="anchor" href="#-alternatives"><span class="octicon octicon-link"></span></a>
+<a name="alternatives"></a> Alternatives</h2>
 
 <ul>
 <li>
@@ -281,7 +293,8 @@ by <a href="https://github.com/miketheman">Mike Fiedler</a>.</li>
 tagging, correct directory structure, and workflow. Ships with the
 <a href="https://github.com/opscode/chef">Chef gem</a>.</li>
 </ul><h2>
-<a name="-development" class="anchor" href="#-development"><span class="octicon octicon-link"></span></a><a name="development"></a> Development</h2>
+<a name="-development" class="anchor" href="#-development"><span class="octicon octicon-link"></span></a>
+<a name="development"></a> Development</h2>
 
 <ul>
 <li>Source hosted at <a href="https://github.com/fnichol/emeril">GitHub</a>
@@ -299,12 +312,14 @@ example:</p>
 <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
 <li>Create new Pull Request</li>
 </ol><h2>
-<a name="-authors" class="anchor" href="#-authors"><span class="octicon octicon-link"></span></a><a name="authors"></a> Authors</h2>
+<a name="-authors" class="anchor" href="#-authors"><span class="octicon octicon-link"></span></a>
+<a name="authors"></a> Authors</h2>
 
 <p>Created and maintained by <a href="https://github.com/fnichol">Fletcher Nichol</a> (<a href="mailto:fnichol@nichol.ca">fnichol@nichol.ca</a>)</p>
 
 <h2>
-<a name="-license" class="anchor" href="#-license"><span class="octicon octicon-link"></span></a><a name="license"></a> License</h2>
+<a name="-license" class="anchor" href="#-license"><span class="octicon octicon-link"></span></a>
+<a name="license"></a> License</h2>
 
 <p>MIT (see <a href="https://github.com/fnichol/emeril/blob/master/LICENSE.txt">LICENSE.txt</a>)</p>
       </section>
